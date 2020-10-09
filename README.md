@@ -1,17 +1,18 @@
-# AutoVeitamento
-Aplicativo para Gerenciar e Gerar Relatórios de Aproveitamento de Estudos em Instituições de Ensino
-
+# AutoVeitamento UFC
+Aplicativo desktop desenvolvido pela Universidade Federal do Ceará para automizar os processos de **Gerenciamento e Geração de Relatórios de Aproveitamento de Estudos** das Coordenações de Instituições de Ensino
 
 ## Exemplo de uso:
 
-Veja um exemplo de uso do programa neste vídeo:
+Veja um vídeo com exemplo de uso do programa [clicando aqui](https://drive.google.com/file/d/1Nk1drlag82oeQzU69rh4vWxvFg4D8Gth/view?usp=sharing).
 
-https://drive.google.com/file/d/1Nk1drlag82oeQzU69rh4vWxvFg4D8Gth/view?usp=sharing
+## Tecnologias utilizadas:
+- [Node js](https://nodejs.org/en/)
+- [React js](https://pt-br.reactjs.org/)
+- [Electron js](https://www.electronjs.org/)
 
+## Instruções de Instalação para ambiente de desenvolviento:
 
-## Instruções de Instalação:
-
-Antes de instalar esse programa, vale lembrar que esse programa possui alguns pré-requisitos para ser executado, sendo eles:
+Antes da instalação, vale lembrar que este programa possui alguns pré-requisitos para ser executado, sendo eles:
 * NodeJs, na sua versão estável mais recente: www.nodejs.org/en/
 * NPM, na sua versão estável mais recente (Obtido ao instalar o NodeJs)
 * LaTex, na versão de instalação que desejar (ex: MikTex https://miktex.org/)
@@ -20,5 +21,5 @@ Então, após os requisitos serem instalados, basta seguir os passos adiantes:
 
 1. Primeiramente, clone este repositório em qualquer lugar na sua máquina
 2. Vá até a pasta onde esse repositório foi clonado e abra o terminal
-3. Digite o comando npm i e aguarde a instalação de todos os pacotes, isso pode levar algum tempo
-4. Digite o comando npm run electron-dev e aguarde
+3. Digite o comando *npm i* e aguarde a instalação de todos os pacotes, isso pode levar algum tempo
+4. Digite o comando *npm run electron-dev* e aguarde a inicialização do programa
