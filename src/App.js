@@ -13,7 +13,7 @@ class App extends Component {
     const win = electron.remote.getCurrentWindow();
     win.setMenuBarVisibility(false);
     return (
-      <div class="App">
+      <div class="App" id="App">
         <Listener>
           <BrowserRouter>
             <Router />

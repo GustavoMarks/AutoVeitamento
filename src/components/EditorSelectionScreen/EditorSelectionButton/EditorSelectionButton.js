@@ -28,7 +28,7 @@ const EditorSelectionButton = props => (<Grid item>
                             {props.modalTitle}
                         </Button>
                         <Collapse in={props.modal==props.modalId}>
-                            <ButtonGroup size="large" aria-label="small outlined button group" style={{minWidth: '420px'}}>
+                            <ButtonGroup size="large" aria-label="small outlined button group" style={{ minWidth: '420px', backgroundColor: '#fff'}}>
                                 <Link to={{ pathname: props.linkAdd, state: { inMainWindow: true }}}>
                                     <Button style={{minHeight:'44px' ,minWidth: '210px', border: "solid #CBCBCB",borderWidth:"0px 0px 1px 1px ", borderRadius: '0px 0px 0px 4px', marginTop: '-2px'}}>
                                         <AddCircleOutlineRoundedIcon style={{marginRight:'10px', marginLeft: '-10px'}}/>

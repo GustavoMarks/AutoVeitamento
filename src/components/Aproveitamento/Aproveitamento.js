@@ -756,7 +756,7 @@ class Aproveitamento extends Component {
 
         return(
             <div>
-                <div style={{textAlign: "left", margin: "40px 100px 100px 100px"}}>
+                <div style={{textAlign: "left", padding: "40px 100px 100px 100px"}}>
                     <Grow in={true}>
                         <Typography style={{textAlign: "center"}}>
                             <h1>{this.state.isEditor?"Edição de Aproveitamento":"Aproveitamento de Cadeiras"}</h1>

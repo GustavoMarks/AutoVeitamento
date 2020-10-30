@@ -509,7 +509,7 @@ class EditorBloc extends Component {
 
 
         return(
-			<div class="container_cb" style={{textAlign: "left", margin: "40px 100px 100px 100px"}}>
+			<div class="container_cb" style={{textAlign: "left", padding: "40px 100px 100px 100px"}}>
                 
                 <Grow in={true}>
                     <Typography style={{textAlign: "center"}}>

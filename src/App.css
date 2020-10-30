@@ -1,7 +1,12 @@
 .App {
   text-align: center;
-  margin-top: 25px;
 }
+.App.darkmode{
+  background-color: #212121;
+  color: rgb(206, 195, 195);
+  height: 100vh;
+}
+
 
 a:hover{
   text-decoration: none;

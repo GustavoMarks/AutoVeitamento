@@ -297,7 +297,7 @@ class EditorDisc extends Component {
         </Slide>
 
         return(
-            <div style={{textAlign: "left", margin: "40px 100px 100px 100px"}}>
+            <div style={{ textAlign: "left", padding: "40px 100px 100px 100px"}}>
                 <Grow in={true}>
                     <Typography style={{textAlign: "center"}}>
                         <h1>Edição de Disciplinas</h1>

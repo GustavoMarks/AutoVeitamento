@@ -138,7 +138,7 @@ class ConsultaProfessor extends Component {
 
 
         return(
-            <div style={{textAlign: "left", margin: "40px 100px 100px 100px"}}>
+            <div style={{ textAlign: "left", padding: "40px 100px 100px 100px"}}>
                 <Grow in={true}>
                     <Typography style={{textAlign: "center"}}>
                         <h1>Consulta de Professores</h1>
