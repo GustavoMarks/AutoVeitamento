@@ -1,6 +1,11 @@
 # AutoVeitamento UFC
 Aplicativo desktop desenvolvido pela Universidade Federal do Ceará para automizar os processos de **Gerenciamento e Geração de Relatórios de Aproveitamento de Estudos** das Coordenações de Instituições de Ensino
 
+## Por quê?
+Toda coordenação de curso faz aproveitamento de estudos com alguma regularidade, e na prática a maioria dos coordenadores de curso guardam aproveitamentos válidos em planilhas.
+Na ausência de algo que permita automatizar esse processo, é preciso preencher relatórios de aproveitamento com todos os dados necessários, e isso pode ser trabalhoso. <br>
+Nesse sentido, o AutoVeitamento surgiu com a possibilidade de fácil e conveniente reutilização de dados previamente inseridos, e gerar automaticamente relatórios de aproveitamento de estudos.
+
 ## Exemplo de uso:
 
 Veja um vídeo com exemplo de uso do programa [clicando aqui](https://drive.google.com/file/d/1Nk1drlag82oeQzU69rh4vWxvFg4D8Gth/view?usp=sharing).
