@@ -1,4 +1,6 @@
 # AutoVeitamento UFC
+[![Build Status](https://travis-ci.org/GustavoMarks/AutoVeitamento.svg?branch=master)](https://travis-ci.org/GustavoMarks/AutoVeitamento)
+
 Aplicativo desktop desenvolvido pela Universidade Federal do Ceará para automizar os processos de **Gerenciamento e Geração de Relatórios de Aproveitamento de Estudos** das Coordenações de Instituições de Ensino
 
 ## Por quê?
