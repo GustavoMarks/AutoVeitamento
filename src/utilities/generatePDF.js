@@ -65,7 +65,7 @@ const pdfGen = {
         \\vspace{2\\baselineskip}
         
         % ------------------------------------------------------------------------------
-        \\begin{tabular}{@{}|m{5,2cm}@{\\ }m{13,25cm}|m{5,5cm}|@{}}
+        \\begin{tabular}{@{}|m{5,5cm}@{\\ }m{13,0cm}|m{5,25cm}|@{}} 
         \\hline
         NOME: &  ${state.nomeAluno}
         & MATRÍCULA: ${state.matriculaAluno}
