@@ -1,0 +1,35 @@
+{
+    "instituicaoData": "Universidade Federal do Ceará",
+    "instituicaoSelect": {
+        "value": "UFC",
+        "label": "UFC: Universidade Federal do Ceará"
+    },
+    "coordenadorData": {
+        "nome": "Pablo Mayckon",
+        "siape": 123456,
+        "dep": "DC"
+    },
+    "coordenadorSelect": {
+        "value": 123456,
+        "label": "DC: Pablo Mayckon"
+    },
+    "cursoData": {
+        "nome": "Ciência da Computação",
+        "codigo": 65,
+        "sigla": "CC"
+    },
+    "cursoSelect": {
+        "value": 65,
+        "label": "65 : CC - Ciência da Computação"
+    },
+    "cidadeData": {
+        "nome": "Fortaleza",
+        "sigla": "FOR",
+        "estado": "CE"
+    },
+    "cidadeSelect": {
+        "value": "FOR",
+        "label": "FOR : Fortaleza - CE"
+    },
+    "percent": 75
+}

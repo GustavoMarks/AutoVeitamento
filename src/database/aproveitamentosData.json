@@ -1,0 +1,64 @@
+{
+    "1604382085051": {
+        "aluno": 408864,
+        "inst": "UFC",
+        "responsavel": 123456,
+        "data": "2020-11-03",
+        "obs": "",
+        "blocos": [
+            {
+                "codigo": "CK00240:CK00240",
+                "label": "CK00240 aproveitando CK00240",
+                "cursadas": [
+                    "CK00240"
+                ],
+                "aproveitadas": [
+                    "CK00240"
+                ]
+            }
+        ],
+        "blocosLabel": [
+            "CK00240 aproveitando CK00240"
+        ],
+        "origin": {
+            "CK00240": {
+                "id": "CK00240",
+                "nota": "10.0",
+                "semestre": "2019.2"
+            }
+        },
+        "destiny": {
+            "CK00240": {
+                "id": "CK00240",
+                "nota": "10.0",
+                "horasApr": "64"
+            }
+        },
+        "originState": {
+            "CK00240:CK00240": {
+                "CK00240": {
+                    "id": "CK00240",
+                    "nota": "010",
+                    "semestre": "2019.2"
+                }
+            }
+        },
+        "destinyState": {
+            "CK00240:CK00240": {
+                "CK00240": {
+                    "id": "CK00240",
+                    "nota": "10.0",
+                    "horasApr": "64"
+                }
+            }
+        },
+        "instDestino": "UFC",
+        "cidade": "FOR",
+        "curso": 65,
+        "coordenador": 123456,
+        "cargo": "Coordenador de Curso",
+        "processo": "23067",
+        "label": "408864: Natalia Rios de Sousa (UFC) em 03/11/2020 às 3:41",
+        "initialDate": 1604382085051
+    }
+}
