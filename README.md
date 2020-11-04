@@ -28,3 +28,7 @@ Então, após os requisitos serem instalados, basta seguir os passos adiantes:
 2. Vá até a pasta onde esse repositório foi clonado e abra o terminal
 3. Digite o comando *npm i* e aguarde a instalação de todos os pacotes, isso pode levar algum tempo
 4. Digite o comando *npm run electron-dev* e aguarde a inicialização do programa
+
+## Refatorações
+
+Foi escolhido apenas o uso de um arquivo de configuração, no caso o yarn(yarn.lock), para evitar conflitos e redundância. O arquivo package-lock.json foi adicionado ao .gitignore.
