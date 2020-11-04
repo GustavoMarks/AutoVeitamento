@@ -33,7 +33,7 @@ const pdfGen = {
                 state.destiny[i][j]?blocks_string+=state.destiny[i][j]:blocks_string+="& & &";
                 blocks_string+="\\\\";
             }
-            if(i != Object.keys(state.origin)[Object.keys(state.origin).length -1])
+            if(i !== Object.keys(state.origin)[Object.keys(state.origin).length -1])
                 blocks_string += " \\hline \\hline\n";
             counter ++;
         }

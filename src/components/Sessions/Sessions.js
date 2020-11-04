@@ -1,21 +1,18 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../actions/actionTypes';
 import SelectInput from "../DataReceivers/SelectInput/SelectInput";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import willContinue from '../../utilities/confirmAlert';
 import "./Sessions.css";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import BlockDisplay from "../BlockDisplay/BlockDisplay";
-import dateUtils from "../../utilities/dateUtilities.js";
 
 
 
@@ -60,21 +57,21 @@ class Sessions extends Component {
         }
 
         if(sessionData.state.cargo)
-            newState.cargo = sessionData.state.cargo == "Coordenador de Curso"?{value: "coord", label: "Coordenador de Curso"}: {value:"vice", label:"Vice-Coordenador de Curso"};
+            newState.cargo = sessionData.state.cargo === "Coordenador de Curso"?{value: "coord", label: "Coordenador de Curso"}: {value:"vice", label:"Vice-Coordenador de Curso"};
 
 
         if(sessionData.state.aluno)
-            this.props.alunosSelect.map((c)=> { if(c.value === sessionData.state.aluno) newState.aluno = c });
+            this.props.alunosSelect.forEach((c)=> { if(c.value === sessionData.state.aluno) newState.aluno = c });
 
         if(sessionData.state.professor)
-            this.props.professoresSelect.map((c)=> { if(c.value === sessionData.state.professor) newState.professor = c });
+            this.props.professoresSelect.forEach((c)=> { if(c.value === sessionData.state.professor) newState.professor = c });
 
         if(sessionData.state.inst)
-            this.props.instituicoesSelect.map((c)=> { if(c.value === sessionData.state.inst) newState.inst = c });
+            this.props.instituicoesSelect.forEach((c)=> { if(c.value === sessionData.state.inst) newState.inst = c });
 
-        if(sessionData.state.blocks.length != 0){
+        if(sessionData.state.blocks.length !== 0){
             for(let i in sessionData.state.blocks)
-                this.props.blocosSelect[sessionData.state.inst].map((c)=> { if(c.value === sessionData.state.blocks[i]) newState.blocks.push(c) });
+                this.props.blocosSelect[sessionData.state.inst].forEach((c)=> { if(c.value === sessionData.state.blocks[i]) newState.blocks.push(c) });
             
             newState.origin = JSON.parse(JSON.stringify(sessionData.state.origin,null,4));
             for(let i in newState.origin)
@@ -206,7 +203,7 @@ class Sessions extends Component {
                             <CardContent>
                             <Typography variant="h5"> Observações: </Typography>
                             <Typography>
-                            {this.state.sessionData.state.obs != ""?this.state.sessionData.state.obs:"O aproveitamento não possui observações"}
+                            {this.state.sessionData.state.obs !== ""?this.state.sessionData.state.obs:"O aproveitamento não possui observações"}
                             </Typography>
                             </CardContent>
                         </Card>

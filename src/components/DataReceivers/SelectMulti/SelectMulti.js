@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
 import objOpe from './../../../utilities/objOpe';
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
 import "../dataReceiverStyles.css";
@@ -45,23 +44,22 @@ class SelectMulti extends Component{
 
 	// Verifica se cada bloco pode ou não estar disponível para seleção
 	isBlockConflitant = block => {
-		if(!this.props.inst || !this.props.type=="bloco")
+		if(!this.props.inst || !this.props.type==="bloco")
 			return false
-		let isOk = true;
 
 		try{
 			for(let i in this.props.value)
 			if(this.props.blocosData[this.props.inst][block.value]){
 				for(let j in this.props.blocosData[this.props.inst][block.value].cursadas){
-					if(this.props.blocosData[this.props.inst][this.props.value[i].value].cursadas.indexOf(this.props.blocosData[this.props.inst][block.value].cursadas[j]) != -1)
+					if(this.props.blocosData[this.props.inst][this.props.value[i].value].cursadas.indexOf(this.props.blocosData[this.props.inst][block.value].cursadas[j]) !== -1)
 						return true
-					if(this.props.blocosData[this.props.inst][this.props.value[i].value].aproveitadas.indexOf(this.props.blocosData[this.props.inst][block.value].cursadas[j]) != -1)
+					if(this.props.blocosData[this.props.inst][this.props.value[i].value].aproveitadas.indexOf(this.props.blocosData[this.props.inst][block.value].cursadas[j]) !== -1)
 						return true
 				}
 				for(let j in this.props.blocosData[this.props.inst][block.value].aproveitadas){
-					if(this.props.blocosData[this.props.inst][this.props.value[i].value].cursadas.indexOf(this.props.blocosData[this.props.inst][block.value].aproveitadas[j]) != -1)
+					if(this.props.blocosData[this.props.inst][this.props.value[i].value].cursadas.indexOf(this.props.blocosData[this.props.inst][block.value].aproveitadas[j]) !== -1)
 						return true
-					if(this.props.blocosData[this.props.inst][this.props.value[i].value].aproveitadas.indexOf(this.props.blocosData[this.props.inst][block.value].aproveitadas[j]) != -1)
+					if(this.props.blocosData[this.props.inst][this.props.value[i].value].aproveitadas.indexOf(this.props.blocosData[this.props.inst][block.value].aproveitadas[j]) !== -1)
 						return true
 				}
 			}			
@@ -86,7 +84,7 @@ class SelectMulti extends Component{
 
 			let willAdd = true;
 			for(let i = 0; i < this.props.value.length; i++)
-				if(this.props.value[i].value == this.props.stack[this.props.type].value)
+				if(this.props.value[i].value === this.props.stack[this.props.type].value)
 					willAdd = false
 			
 			if(willAdd){

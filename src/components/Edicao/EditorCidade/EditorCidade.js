@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
@@ -9,7 +9,6 @@ import denyDeletePopup from "../DenyDeletePopup/DenyDeletePopup";
 import confirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 
@@ -53,15 +52,15 @@ class EditorCidade extends Component {
 			aproveitamentos: []
 		}
 
-        if(this.props.configuracoes.cidadeSelect.value == this.state.city.value)
+        if(this.props.configuracoes.cidadeSelect.value === this.state.city.value)
             conflitos.configuracoes.push("Cidade")
 		
 		for(let i in this.props.aproveitamentosData){
-			if(this.props.aproveitamentosData[i].cidade == this.state.city.value)
+			if(this.props.aproveitamentosData[i].cidade === this.state.city.value)
 				conflitos.aproveitamentos.push(this.props.aproveitamentosData[i].label)
 		}	
 
-		return (conflitos.configuracoes.length == 0 && conflitos.aproveitamentos.length == 0)?false:conflitos;
+		return (conflitos.configuracoes.length === 0 && conflitos.aproveitamentos.length === 0)?false:conflitos;
 	}
 
 	checkIsDeleteOk = () => {
@@ -111,7 +110,7 @@ class EditorCidade extends Component {
 			});  
 			
 	
-			if(this.props.configuracoes.cidadeSelect.value == this.state.initials){
+			if(this.props.configuracoes.cidadeSelect.value === this.state.initials){
 	
 				let newConfigs = JSON.parse(JSON.stringify(this.props.configuracoes));
 	
@@ -133,11 +132,11 @@ class EditorCidade extends Component {
 				});
 			}
 	
-			if(this.state.initials != this.state.newInitials){
+			if(this.state.initials !== this.state.newInitials){
 				let newAprData = JSON.parse(JSON.stringify(this.props.aproveitamentosData));
 	
 				for(let i in newAprData)
-					if(newAprData[i].cidade == this.state.initials)
+					if(newAprData[i].cidade === this.state.initials)
 						newAprData[i].cidade = this.state.newInitials
 				
 				this.props.updateFileMultipleData({
@@ -157,13 +156,13 @@ class EditorCidade extends Component {
 	
 	isEmpty = () => !this.state.newName || !this.state.newInitials || !this.state.newState
 	
-	isEqual = ()=> this.state.name == this.state.newName && this.state.initials == this.state.newInitials && this.state.state == this.state.newState
+	isEqual = ()=> this.state.name === this.state.newName && this.state.initials === this.state.newInitials && this.state.state === this.state.newState
 
     render(){
 
 		if(this.state.backToMain) return(<Redirect to="/"/>);
 
-		let isOk =  !(!this.isEmpty() && !this.isEqual() && this.state.initials != this.state.newInitials && this.checkExistence());
+		let isOk =  !(!this.isEmpty() && !this.isEqual() && this.state.initials !== this.state.newInitials && this.checkExistence());
 
         let warning;
 

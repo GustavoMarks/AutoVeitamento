@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
 import objOpe from './../../../utilities/objOpe';
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
 import "../dataReceiverStyles.css";

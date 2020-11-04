@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./CadastroBloc.css";
 import {connect} from 'react-redux';
 import { confirmAlert } from 'react-confirm-alert'; // Import
@@ -10,7 +10,6 @@ import SelectInput from '../../DataReceivers/SelectInput/SelectInput';
 import DateInput from '../../DataReceivers/DateInput/DateInput';
 import willContinue from "../../../utilities/confirmAlert";
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
@@ -55,7 +54,7 @@ class CadastroBloc extends Component {
     }
     checkExistence = () => !!(this.props.blocosData[this.state.inst.value] && this.props.blocosData[this.state.inst.value][this.generateUniqueStrings().value]);
     
-    isEmpty = () => this.state.origin.length == 0 || this.state.destiny.length == 0 || !this.state.solicitador;
+    isEmpty = () => this.state.origin.length === 0 || this.state.destiny.length === 0 || !this.state.solicitador;
     
 
     generateUniqueStrings = ()=>{
@@ -76,8 +75,8 @@ class CadastroBloc extends Component {
         let originString = "";
         let originStringReadable = "";
 
-        ordenedOrigin.map((current, index)=>{
-            if(index == ordenedOrigin.length-1 ){
+        ordenedOrigin.forEach((current, index)=>{
+            if(index === ordenedOrigin.length-1 ){
                 originString += current.value;
                 originStringReadable += current.value;
             }
@@ -85,10 +84,9 @@ class CadastroBloc extends Component {
                 originString += current.value + "|";
                 originStringReadable += current.value + ", ";
             }
-            return ;
         });
 
-        if(originString[originString.length-1] == "|"){
+        if(originString[originString.length-1] === "|"){
             originString = originString.slice(0, -1);
         }
 
@@ -96,8 +94,8 @@ class CadastroBloc extends Component {
         let destinyString = "";
         let destinyStringReadable = "";
 
-        ordenedDestiny.map((current, index)=>{
-            if(index == ordenedDestiny.length-1 ){
+        ordenedDestiny.forEach((current, index)=>{
+            if(index === ordenedDestiny.length-1 ){
                 destinyString += current.value;
                 destinyStringReadable += current.value;
             }
@@ -105,10 +103,9 @@ class CadastroBloc extends Component {
                 destinyString += current.value + "|";
                 destinyStringReadable += current.value + ", ";
             }
-            return
         });
 
-        if(destinyString[destinyString.length-1] == "|"){
+        if(destinyString[destinyString.length-1] === "|"){
             destinyString = destinyString.slice(0, -1);
         }
 
@@ -158,14 +155,12 @@ class CadastroBloc extends Component {
         let somaDeCargasHorariasDestino = 0;
 
 
-        this.state.origin.map( curr => {
+        this.state.origin.forEach( curr => {
             somaDeCargasHorariasOrigem += Number(this.props.disciplinasData[this.state.inst.value][curr.value].horas);
-            return;
         });
 
-        this.state.destiny.map( curr => {
+        this.state.destiny.forEach( curr => {
             somaDeCargasHorariasDestino += Number(this.props.disciplinasData[this.props.configuracoes.instituicaoSelect.value][curr.value].horas);
-            return;
         });
 
         const proporcao = (this.props.configuracoes.percent/100)*somaDeCargasHorariasDestino;
@@ -258,7 +253,7 @@ class CadastroBloc extends Component {
                                 isCreatable
                                 link="/cadastroProfessor"
                                 linkText="Cadastrar novo Professor"
-                                focus={this.props.stack && this.props.stack.length > 0 && this.props.stack[this.props.stack.length -1].route == '/cadastroBloc' && this.props.stack[this.props.stack.length -1].data}
+                                focus={this.props.stack && this.props.stack.length > 0 && this.props.stack[this.props.stack.length -1].route === '/cadastroBloc' && this.props.stack[this.props.stack.length -1].data}
                             />
                         </Slide>,
                         <Slide in={true} direction="left">
@@ -362,7 +357,7 @@ class CadastroBloc extends Component {
                             disabled={this.state.blockInst}
                             link="/cadastroInst"
                             linkText="Cadastrar nova Instituição de Ensino "
-                            focus={!(this.state.inst == null && this.props.stack && this.props.stack.length > 0 && this.props.stack[this.props.stack.length -1].route == '/cadastroBloc' && this.props.stack[this.props.stack.length -1].data)}
+                            focus={!(this.state.inst === null && this.props.stack && this.props.stack.length > 0 && this.props.stack[this.props.stack.length -1].route === '/cadastroBloc' && this.props.stack[this.props.stack.length -1].data)}
                         />
                     </Slide>
                     {otherFields}

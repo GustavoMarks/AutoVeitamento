@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
@@ -10,7 +10,6 @@ import denyDeletePopup from "../DenyDeletePopup/DenyDeletePopup";
 import confirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 
@@ -49,11 +48,11 @@ class EditorUnidade extends Component {
 		}
 
 		for(let i in this.props.professoresData){
-			if(this.props.professoresData[i].dep == this.state.initials)
+			if(this.props.professoresData[i].dep === this.state.initials)
 				conflitos.professores.push(this.props.professoresData[i].siape + ": "+this.props.professoresData[i].nome)
 		}
 
-		return (conflitos.professores.length == 0)?false:conflitos;
+		return (conflitos.professores.length === 0)?false:conflitos;
 	}
 
 	checkIsDeleteOk = () => {
@@ -99,7 +98,7 @@ class EditorUnidade extends Component {
 			});
 
 			// Atualiza os códigos de unidade se eles mudaram. Senão, não faz operações desnecessárias de arquivo
-			if(this.state.initials != this.state.newInitials){
+			if(this.state.initials !== this.state.newInitials){
 
 				let newProfessoresData = JSON.parse(JSON.stringify(this.props.professoresData));
 
@@ -142,18 +141,18 @@ class EditorUnidade extends Component {
 	
 	isEmpty = () => !this.state.newName || !this.state.newInitials
 	
-	isEqual = ()=> this.state.name == this.state.newName && this.state.initials == this.state.newInitials
+	isEqual = ()=> this.state.name === this.state.newName && this.state.initials === this.state.newInitials
 
     render(){
 		if(this.state.backToMain) return(<Redirect to="/"/>);
 
 		let renderedComponents;
 
-		let isOk =  !(!this.isEmpty() && !this.isEqual() && this.state.initials != this.state.newInitials && this.checkExistence());
+		let isOk =  !(!this.isEmpty() && !this.isEqual() && this.state.initials !== this.state.newInitials && this.checkExistence());
 
         let warning;
 
-		if(!this.state.isProcessingData && !this.isEmpty() && !this.isEqual() && this.state.initials != this.state.newInitials && this.checkExistence()){
+		if(!this.state.isProcessingData && !this.isEmpty() && !this.isEqual() && this.state.initials !== this.state.newInitials && this.checkExistence()){
 			warning = 
 				<Typography>
 					<h3 style={{color: 'red'}}>Já existe uma Unidade de Lotação cadastrada com essa sigla!</h3>

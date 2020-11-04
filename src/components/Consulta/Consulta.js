@@ -1,17 +1,9 @@
 import React, {Component} from "react";
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { BrowserRouter as BrowserRouter, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
-import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
-import RestoreIcon from '@material-ui/icons/Restore';
-import SearchIcon from '@material-ui/icons/Search';
-import FindInPageIcon from '@material-ui/icons/FindInPage';
-import EditIcon from '@material-ui/icons/Edit';
-import SettingsIcon from '@material-ui/icons/Settings';
 import Grow from '@material-ui/core/Grow';
-import Collapse from '@material-ui/core/Collapse';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import blocoIcon from "../../images/graduation-hat.svg";
 import alunoIcon from "../../images/student.svg";
 import professorIcon from "../../images/professor.svg";
@@ -20,9 +12,7 @@ import institutionIcon from "../../images/institution.svg";
 import unitIcon from "../../images/unit.svg"; 
 import courseIcon from "../../images/course.svg"; 
 import cityIcon from "../../images/city.svg"; 
-import SvgIcon from '@material-ui/core/SvgIcon';
 import {connect} from 'react-redux';
-import SelectInput from "../DataReceivers/SelectInput/SelectInput";
 import ConsultaAluno from "./ConsultaAluno/ConsultaAluno";
 
 class Consulta extends Component {
@@ -87,7 +77,7 @@ class Consulta extends Component {
                     <Grid item>
                         <Link to="/consultaBloco">
                             <Button size="large" variant="contained" color="primary" style={{minWidth: '420px'}}>
-                                <img src={blocoIcon} style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "16.72px"}} />
+                                <img src={blocoIcon} alt="blocoIcon" style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "16.72px"}} />
                                 Blocos de Aproveitamento
                             </Button>
                         </Link>
@@ -96,7 +86,7 @@ class Consulta extends Component {
                     <Grid item>
                         <Link to="/consultaDisciplina">
                             <Button size="large" variant="contained" color="primary" style={{minWidth: '420px'}}>
-                                <img src={disciplineIcon} style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "24px"}} />
+                                <img src={disciplineIcon} alt="disciplineIcon" style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "24px"}} />
                                 Disciplinas
                             </Button>
                         </Link>
@@ -104,7 +94,7 @@ class Consulta extends Component {
                     <Grid item>
                         <Link to="/consultaAluno">
                             <Button size="large" variant="contained" color="primary" style={{minWidth: '420px'}}>
-                                <img src={alunoIcon} style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "24.22px"}} />
+                                <img src={alunoIcon} alt="alunoIcon" style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "24.22px"}} />
                                 Alunos
                             </Button>
                         </Link>
@@ -112,7 +102,7 @@ class Consulta extends Component {
                     <Grid item>
                         <Link to="/consultaInstituicao">
                             <Button size="large" variant="contained" color="primary" style={{minWidth: '420px'}}>
-                                <img src={institutionIcon} style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "23.98px"}} />
+                                <img src={institutionIcon} alt="institutionIcon" style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "23.98px"}} />
                                 Instituições de Ensino
                             </Button>
                         </Link>
@@ -120,7 +110,7 @@ class Consulta extends Component {
                     <Grid item>
                         <Link to="/consultaProfessor">
                             <Button size="large" variant="contained" color="primary" style={{minWidth: '420px'}}>
-                                <img src={professorIcon} style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "24px"}} />
+                                <img src={professorIcon} alt="professorIcon" style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "24px"}} />
                                 Professores
                             </Button>
                         </Link>
@@ -128,7 +118,7 @@ class Consulta extends Component {
                     <Grid item>
                         <Link to="/consultaUnidade">
                             <Button size="large" variant="contained" color="primary" style={{minWidth: '420px'}}>
-                                <img src={unitIcon} style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "24px"}} />
+                                <img src={unitIcon} alt="unitIcon" style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "24px"}} />
                                 Unidades de Lotação
                             </Button>
                         </Link>
@@ -136,7 +126,7 @@ class Consulta extends Component {
                     <Grid item>
                         <Link to="/consultaCurso">
                             <Button size="large" variant="contained" color="primary" style={{minWidth: '420px'}}>
-                                <img src={courseIcon} style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "32.86px"}} />
+                                <img src={courseIcon} alt="courseIcon" style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "32.86px"}} />
                                 Cursos
                             </Button>
                         </Link>
@@ -144,7 +134,7 @@ class Consulta extends Component {
                     <Grid item>
                         <Link to="/consultaCidade">
                             <Button size="large" variant="contained" color="primary" style={{minWidth: '420px'}}>
-                                <img src={cityIcon} style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "26.34px"}} />
+                                <img src={cityIcon} alt="cityIcon" style={{marginRight:'10px', marginLeft: '-10px', width: '24px', height: "26.34px"}} />
                                 Cidades
                             </Button>
                         </Link>

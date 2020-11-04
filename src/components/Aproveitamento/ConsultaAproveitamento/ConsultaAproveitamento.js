@@ -1,20 +1,17 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
 import SelectInput from "../../DataReceivers/SelectInput/SelectInput";
 import "./ConsultaAproveitamento.css";
 import willContinue from "../../../utilities/confirmAlert";
-import DiscDetailsDisplay from "../../DataReceivers/DiscDetailsDisplay/DiscDetailsDisplay";
 import confirmDeletePopup from "../../Edicao/ConfirmDeletePopup/ConfirmDeletePopup";
 import pdfGen from "../../../utilities/generatePDF";
 import Slide from '@material-ui/core/Slide';
-import Fade from '@material-ui/core/Fade';
 import Grow from '@material-ui/core/Grow';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import OneLineDisplay from "../../Consulta/DisplayComponents/OneLineDisplay/OneLineDisplay";
-import OrdinaryDisplay from "../../Consulta/DisplayComponents/OrdinaryDisplay/OrdinaryDisplay";
 import MultiRowDisplay from "../../Consulta/DisplayComponents/MultiRowDisplay/MultiRowDisplay";
 import SuperBlockCardComponent from "./SuperBlockCardComponent/SuperBlockCardComponent";
 
@@ -33,7 +30,6 @@ class ConsultaAproveitamento extends Component {
 
         const aprData = this.props.aproveitamentosData[this.state.carriedState.initialDate];
         let preprocessedData = {}
-        let data = new Date(aprData.initialDate);
         preprocessedData.nomeAluno = this.props.alunosData[aprData.aluno].nome;
         preprocessedData.matriculaAluno = aprData.aluno;
 
@@ -142,21 +138,21 @@ class ConsultaAproveitamento extends Component {
 		};
 
 		if(aprData.cargo)
-            newState.cargo = aprData.cargo == "Coordenador de Curso"?{value: "coord", label: "Coordenador de Curso"}: {value:"vice", label:"Vice-Coordenador de Curso"};
+            newState.cargo = aprData.cargo === "Coordenador de Curso"?{value: "coord", label: "Coordenador de Curso"}: {value:"vice", label:"Vice-Coordenador de Curso"};
 
 
 		if(aprData.aluno)
-            this.props.alunosSelect.map((c)=> { if(c.value === aprData.aluno) newState.aluno = c });
+            this.props.alunosSelect.forEach((c)=> { if(c.value === aprData.aluno) newState.aluno = c });
 
 		if(aprData.responsavel)
-            this.props.professoresSelect.map((c)=> { if(c.value === aprData.responsavel) newState.professor = c });
+            this.props.professoresSelect.forEach((c)=> { if(c.value === aprData.responsavel) newState.professor = c });
 
 		if(aprData.inst)
-            this.props.instituicoesSelect.map((c)=> { if(c.value === aprData.inst) newState.inst = c });
+            this.props.instituicoesSelect.forEach((c)=> { if(c.value === aprData.inst) newState.inst = c });
 
-		if(aprData.blocos.length != 0){
+		if(aprData.blocos.length !== 0){
 			for(let i in aprData.blocos)
-				this.props.blocosSelect[aprData.inst].map((c)=> { if(c.value === aprData.blocos[i].codigo) newState.blocks.push(c) });
+				this.props.blocosSelect[aprData.inst].forEach((c)=> { if(c.value === aprData.blocos[i].codigo) newState.blocks.push(c) });
 			
 			newState.origin = JSON.parse(JSON.stringify(aprData.originState,null,4));
 			for(let i in newState.origin)

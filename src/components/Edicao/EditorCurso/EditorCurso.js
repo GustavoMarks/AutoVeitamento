@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
@@ -9,7 +9,6 @@ import denyDeletePopup from "../DenyDeletePopup/DenyDeletePopup";
 import confirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 
@@ -52,16 +51,16 @@ class EditorCurso extends Component {
 			aproveitamentos: []
 		}
 
-        if(this.props.configuracoes.cursoSelect.value == this.state.course.value)
+        if(this.props.configuracoes.cursoSelect.value === this.state.course.value)
             conflitos.configuracoes.push("Curso")
 		
 		for(let i in this.props.aproveitamentosData){
-			if(this.props.aproveitamentosData[i].curso == this.state.course.value)
+			if(this.props.aproveitamentosData[i].curso === this.state.course.value)
 				conflitos.aproveitamentos.push(this.props.aproveitamentosData[i].label)
 		}	
 	
 			
-		return (conflitos.configuracoes.length == 0 && conflitos.aproveitamentos.length == 0)?false:conflitos;
+		return (conflitos.configuracoes.length === 0 && conflitos.aproveitamentos.length === 0)?false:conflitos;
 	}
 
 	checkIsDeleteOk = () => {
@@ -111,7 +110,7 @@ class EditorCurso extends Component {
 				prevId: this.state.code
 			});  
 			
-			if(this.props.configuracoes.cursoData && this.props.configuracoes.cursoData.codigo ==  this.state.code){
+			if(this.props.configuracoes.cursoData && this.props.configuracoes.cursoData.codigo ===  this.state.code){
 				let newConfigs = JSON.parse(JSON.stringify(this.props.configuracoes));
 			
 				newConfigs.cursoData = {
@@ -131,11 +130,11 @@ class EditorCurso extends Component {
 				});
 			}
 			
-			if(this.state.code != this.state.newCode){
+			if(this.state.code !== this.state.newCode){
 				let newAprData = JSON.parse(JSON.stringify(this.props.aproveitamentosData));
 	
 				for(let i in newAprData)
-					if(newAprData[i].curso == this.state.code)
+					if(newAprData[i].curso === this.state.code)
 						newAprData[i].curso = this.state.newCode
 				
 				this.props.updateFileMultipleData({
@@ -150,19 +149,16 @@ class EditorCurso extends Component {
 		});
 	}
 
-	checkExistence = () => (this.state.code != this.state.newCode) && !!this.props.cursosData[this.state.newCode];
+	checkExistence = () => (this.state.code !== this.state.newCode) && !!this.props.cursosData[this.state.newCode];
 	
 	isEmpty = () => !this.state.newName || !this.state.newInitials || !this.state.newCode
 	
-	isEqual = ()=> this.state.name == this.state.newName && this.state.initials == this.state.newInitials && this.state.code == this.state.newCode
+	isEqual = ()=> this.state.name === this.state.newName && this.state.initials === this.state.newInitials && this.state.code === this.state.newCode
 
     render(){
 		if(this.state.backToMain) return(<Redirect to="/"/>);
 
-		let renderedComponents;
-		let submit;
-
-		let isOk =  !(!this.isEmpty() && !this.isEqual() && this.state.code != this.state.newCode && this.checkExistence());
+		let isOk =  !(!this.isEmpty() && !this.isEqual() && this.state.code !== this.state.newCode && this.checkExistence());
 
         let warning;
 

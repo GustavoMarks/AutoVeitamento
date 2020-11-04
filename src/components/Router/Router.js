@@ -1,4 +1,4 @@
-import { BrowserRouter as BrowserRouter, Route, Switch, } from "react-router-dom";
+import {  Route, Switch, } from "react-router-dom";
 import React, {Component} from "react";
 import Seletor from "../Seletor/Seletor";
 import Coordenador from "../Coordenador/Coordenador";
@@ -7,8 +7,6 @@ import Sobre from "../Sobre/Sobre";
 import Ajuda from "../Ajuda/Ajuda";
 import Error404 from "../Error404/Error404";
 import Aproveitamento from "../Aproveitamento/Aproveitamento";
-import NavBar from "../NavBar/NavBar";
-import ResultadoAproveitamento from "../Aproveitamento/ResultadoAproveitamento/ResultadoAproveitamento";
 import CadastroDisc from "../Cadastro/CadastroDisc/CadastroDisc";
 import CadastroInst from "../Cadastro/CadastroInst/CadastroInst";
 import CadastroBloc from "../Cadastro/CadastroBloc/CadastroBloc";

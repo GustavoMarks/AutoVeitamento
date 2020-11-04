@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
 import SelectInput from '../../DataReceivers/SelectInput/SelectInput';
@@ -9,7 +9,6 @@ import denyDeletePopup from "../DenyDeletePopup/DenyDeletePopup";
 import confirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 
@@ -60,34 +59,34 @@ class EditorProfessor extends Component {
 			aproveitamentos: []
 		}
 
-		if(this.props.configuracoes.coordenadorSelect.value == this.state.siape)
+		if(this.props.configuracoes.coordenadorSelect.value === this.state.siape)
 			conflitos.configuracoes.push("Coordenador(a) do Curso")
 
 		for(let i in this.props.blocosData){
 			for(let j in this.props.blocosData[i]){
-				if(this.props.blocosData[i][j].solicitador == this.state.siape && this.props.blocosData[i][j].parecerista == this.state.siape)
+				if(this.props.blocosData[i][j].solicitador === this.state.siape && this.props.blocosData[i][j].parecerista === this.state.siape)
 					conflitos.blocos.push("Solicitador(a) e Parecerista em " + this.props.blocosData[i][j].label)
-				else if(this.props.blocosData[i][j].solicitador == this.state.siape)
+				else if(this.props.blocosData[i][j].solicitador === this.state.siape)
 					conflitos.blocos.push("Solicitador(a) em " + this.props.blocosData[i][j].label)
-				else if(this.props.blocosData[i][j].parecerista == this.state.siape)
+				else if(this.props.blocosData[i][j].parecerista === this.state.siape)
 					conflitos.blocos.push("Paracerista em " + this.props.blocosData[i][j].label)
 			}
 		}
 
 		for(let i in this.props.sessions)
-			if(this.props.sessions[i].state.professor == this.state.siape)
+			if(this.props.sessions[i].state.professor === this.state.siape)
 				conflitos.sessoes.push("Responsável em "+this.props.sessions[i].label)
 		
 		for(let i in this.props.aproveitamentosData){
-			if(this.props.aproveitamentosData[i].responsavel == this.state.siape && this.props.aproveitamentosData[i].coordenador == this.state.siape)
+			if(this.props.aproveitamentosData[i].responsavel === this.state.siape && this.props.aproveitamentosData[i].coordenador === this.state.siape)
 				conflitos.aproveitamentos.push("Responsável e Coordenador(a) em " +this.props.aproveitamentosData[i].label)
-			else if(this.props.aproveitamentosData[i].responsavel == this.state.siape)
+			else if(this.props.aproveitamentosData[i].responsavel === this.state.siape)
 				conflitos.aproveitamentos.push("Responsável em " +this.props.aproveitamentosData[i].label)
-			else if(this.props.aproveitamentosData[i].coordenador == this.state.siape)
+			else if(this.props.aproveitamentosData[i].coordenador === this.state.siape)
 				conflitos.aproveitamentos.push("Coordenador(a) em " +this.props.aproveitamentosData[i].label)
 		}
 
-		return (conflitos.blocos.length == 0 && conflitos.sessoes.length == 0 && conflitos.configuracoes.length == 0 && conflitos.aproveitamentos.length == 0)?false:conflitos;
+		return (conflitos.blocos.length === 0 && conflitos.sessoes.length === 0 && conflitos.configuracoes.length === 0 && conflitos.aproveitamentos.length === 0)?false:conflitos;
 	}
 
 	checkIsDeleteOk = () => {
@@ -117,7 +116,7 @@ class EditorProfessor extends Component {
 	
 	isEmpty = () => !this.state.newSiape || !this.state.newName || !this.state.newUnit;
 	
-	isEqual = ()=> this.state.name == this.state.newName && this.state.siape == parseInt(this.state.newSiape) && this.state.unit.value == this.state.newUnit.value;
+	isEqual = ()=> this.state.name === this.state.newName && this.state.siape === parseInt(this.state.newSiape) && this.state.unit.value === this.state.newUnit.value;
 
 	editProf = ()=>{
 
@@ -145,7 +144,7 @@ class EditorProfessor extends Component {
 				prevId: parseInt(this.state.siape)
 			});
 
-			if(this.props.configuracoes.coordenadorSelect.value == this.state.siape){
+			if(this.props.configuracoes.coordenadorSelect.value === this.state.siape){
 				let newConfigs = JSON.parse(JSON.stringify(this.props.configuracoes));
 
 				newConfigs.coordenadorData = {
@@ -165,13 +164,13 @@ class EditorProfessor extends Component {
 				});
 			}
 			
-			if(this.state.siape != this.state.newSiape){
+			if(this.state.siape !== this.state.newSiape){
 				let newAprData = JSON.parse(JSON.stringify(this.props.aproveitamentosData));
 
 				for(let i in newAprData){
-					if(newAprData[i].responsavel == this.state.siape)
+					if(newAprData[i].responsavel === this.state.siape)
 						newAprData[i].responsavel = this.state.newSiape
-					if(newAprData[i].coordenador == this.state.siape)
+					if(newAprData[i].coordenador === this.state.siape)
 						newAprData[i].coordenador = this.state.newSiape
 				}
 				this.props.updateFileMultipleData({
@@ -183,10 +182,10 @@ class EditorProfessor extends Component {
 				let newBlocsData = JSON.parse(JSON.stringify(this.props.blocosData));
 				for(let i in newBlocsData){
 					for(let j in newBlocsData[i]){
-						if(newBlocsData[i][j].solicitador == this.state.siape){
+						if(newBlocsData[i][j].solicitador === this.state.siape){
 							newBlocsData[i][j].solicitador = this.state.newSiape
 						}
-						if(newBlocsData[i][j].parecerista == this.state.siape){
+						if(newBlocsData[i][j].parecerista === this.state.siape){
 							newBlocsData[i][j].parecerista = this.state.newSiape
 						}
 					}
@@ -200,7 +199,7 @@ class EditorProfessor extends Component {
 
 				let newSessions = {...this.props.sessions}
 				for(let i in newSessions)
-					if(newSessions[i].state.professor == this.state.siape)
+					if(newSessions[i].state.professor === this.state.siape)
 						newSessions[i].state.professor = this.state.newSiape
 				
 				this.props.updateFileMultipleData({
@@ -219,11 +218,11 @@ class EditorProfessor extends Component {
 
 		let renderedComponents;
 
-		let isOk =  !(!this.isEmpty() && !this.isEqual() && this.state.siape != this.state.newSiape && this.checkExistence());
+		let isOk =  !(!this.isEmpty() && !this.isEqual() && this.state.siape !== this.state.newSiape && this.checkExistence());
 
         let warning;
 
-		if(!this.state.isProcessingData && !this.isEmpty() && !this.isEqual() && this.state.siape != this.state.newSiape && this.checkExistence()){
+		if(!this.state.isProcessingData && !this.isEmpty() && !this.isEqual() && this.state.siape !== this.state.newSiape && this.checkExistence()){
 			warning = 
 			<Typography>
 				<h3 style={{color: 'red'}}>Já um professor cadastrado com esse SIAPE!</h3>

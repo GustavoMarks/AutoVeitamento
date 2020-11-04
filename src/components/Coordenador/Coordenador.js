@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./Coordenador.css";
-import { BrowserRouter as BrowserRouter, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class Coordenador extends Component {
     render(){

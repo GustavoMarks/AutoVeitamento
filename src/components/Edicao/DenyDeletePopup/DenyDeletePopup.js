@@ -17,7 +17,7 @@ const denyDeletePopup = (onConfirm, instance,conflicts) => {
     let components = []
 
     for(let i in conflicts){
-        if(conflicts[i].length == 0) continue
+        if(conflicts[i].length === 0) continue
 
         let toBeAdded = conflicts[i].map(curr=><li>{curr}</li>);
         components.push(<div key={i}>

@@ -1,12 +1,6 @@
 import React from 'react';
-import Typography from "@material-ui/core/Typography";
 import Checkbox from '@material-ui/core/Checkbox';
-import Select from 'react-select';
-import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import objOpe from './../../../utilities/objOpe';
 import {connect} from 'react-redux';
 import SelectMulti from '../../DataReceivers/SelectMulti/SelectMulti';
 
@@ -45,7 +39,7 @@ function FilterSelectMulti(props){
                     updateState={(data, callback)=>{
 						if(!props.toggle)
 							props.onToggle(true)
-						if(data.length == 0)
+						if(data.length === 0)
 							props.onToggle(false)
 						props.onChange(data)
 					}}
