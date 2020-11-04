@@ -36,4 +36,8 @@ pode gerar conflitos e redundância. Logo, os comando com _npm_ são opcionais (
 
 #### Por que usar o yarn?
 
+<<<<<<< HEAD
 O yarn.lock é criado com o CLI do yarn, o qual possui desempenho melhor. ele
+=======
+O yarn.lock é criado com o CLI do yarn, o qual possui desempenho melhor. 
+>>>>>>> e1665b489fae6c24baaae1623fa182b09622c53f
