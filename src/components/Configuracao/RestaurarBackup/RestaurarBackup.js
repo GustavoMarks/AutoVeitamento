@@ -1,15 +1,13 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
-import TextInput from '../../DataReceivers/TextInput/TextInput';
 import SelectInput from '../../DataReceivers/SelectInput/SelectInput';
 import willContinue from "../../../utilities/confirmAlert";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import OrdinaryDisplay from '../../Consulta/DisplayComponents/OrdinaryDisplay/OrdinaryDisplay';

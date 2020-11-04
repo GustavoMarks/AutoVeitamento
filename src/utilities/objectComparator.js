@@ -16,9 +16,9 @@ const objComp = {
 		let obj1Keys = [...Object.keys(obj1)];
 		let obj2Keys = [...Object.keys(obj2)];		
 
-		if(obj1Keys.length != obj2Keys.length) return false
+		if(obj1Keys.length !== obj2Keys.length) return false
 
-		if(JSON.stringify(obj1) == JSON.stringify(obj2)) return true
+		if(JSON.stringify(obj1) === JSON.stringify(obj2)) return true
 
 		for(let i = 0; i< obj1Keys.length; i++){
 			if(!obj2[obj1Keys[i]] || !this.compareObj(obj2[obj1Keys[i]], obj1[obj1Keys[i]]))  return false;
@@ -37,7 +37,7 @@ const objComp = {
 	 * @param {Array} arr2 - The second compared array
 	 */
 	compareArrNonOrdered: function(arr1, arr2){
-		if(arr1.length != arr2.length) return false;
+		if(arr1.length !== arr2.length) return false;
 
 		if(!this.arrayInAnother(arr1, arr2) || !this.arrayInAnother(arr2, arr1)) return false
 
@@ -50,7 +50,7 @@ const objComp = {
 	 * @param {Array} arr2 - The second compared array
 	 */
 	compareArrOrdered: function(arr1, arr2){
-		if(arr1.length != arr2.length) return false;
+		if(arr1.length !== arr2.length) return false;
 
 		for(let i = 0; i < arr1.length; i++) 
 			if(this.compareObj(arr1[i], arr2[i])) return false
@@ -69,7 +69,7 @@ const objComp = {
 	arrayInAnother: function(contained, container){
 
 		for(let i = 0; i < contained.length; i++ )
-			if(container.indexOf(contained[i]) == -1) return false
+			if(container.indexOf(contained[i]) === -1) return false
 		
 		return true
 	},
@@ -89,9 +89,9 @@ const objComp = {
 		for(let i in newObj){
 			if(!oldObj[i]) difference[i] = newObj[i];
 
-			else if(typeof(oldObj[i]) == typeof(newObj[i]) && !this.compareObj(oldObj[i], newObj[i]) ) difference[i] = {...newObj[i]};
+			else if(typeof(oldObj[i]) === typeof(newObj[i]) && !this.compareObj(oldObj[i], newObj[i]) ) difference[i] = {...newObj[i]};
 			
-			else if(oldObj[i] != newObj[i]) difference[i] = newObj[i];
+			else if(oldObj[i] !== newObj[i]) difference[i] = newObj[i];
 		}
 
 		return difference;
@@ -105,7 +105,7 @@ const objComp = {
 	*/
 	getDiffArr: function(oldArr, newArr){
 
-		let difference = newArr.map((current)=>{
+		let difference = newArr.forEach((current)=>{
 			let exists = false;
 			let j = 0;
 			while(!exists && j<oldArr.length){
@@ -144,10 +144,10 @@ const objComp = {
 	 */
 	isEmpty: function(something){
 		if(!something) return true;
-		if(something instanceof Array && something.length == 0) return true;
-		if(something instanceof Array && something.length != 0) return false; 
+		if(something instanceof Array && something.length === 0) return true;
+		if(something instanceof Array && something.length !== 0) return false; 
 		if(something instanceof Object){
-			return Object.keys(something).length == 0
+			return Object.keys(something).length === 0
 		}
 		return false;
 	}

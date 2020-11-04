@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
 import CPFInput from '../../DataReceivers/CPFInput/CPFInput';
@@ -7,7 +7,6 @@ import * as actionTypes from '../../../actions/actionTypes';
 import willContinue from '../../../utilities/confirmAlert';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 

@@ -1,16 +1,14 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
 import SelectInput from '../../DataReceivers/SelectInput/SelectInput';
 import * as actionTypes from '../../../actions/actionTypes';
 import willContinue from '../../../utilities/confirmAlert';
-import objOpe from "../../../utilities/objOpe";
 import denyDeletePopup from "../DenyDeletePopup/DenyDeletePopup";
 import confirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 
@@ -40,17 +38,17 @@ class EditorDisc extends Component {
 
     restrictionChecker = () => {
 
-        if(this.state.inst.value == this.state.newInst.value && this.state.code == this.state.newCode && this.state.hours == this.state.newHours)
+        if(this.state.inst.value === this.state.newInst.value && this.state.code === this.state.newCode && this.state.hours === this.state.newHours)
             return false;
 
         let conflicts = [];
 
         for(let i in this.props.blocosData)
             for(let j in this.props.blocosData[i])
-                if(this.props.blocosData[i][j].cursadas.indexOf(this.state.code) != -1 || this.props.blocosData[i][j].aproveitadas.indexOf(this.state.code) != -1 )
+                if(this.props.blocosData[i][j].cursadas.indexOf(this.state.code) !== -1 || this.props.blocosData[i][j].aproveitadas.indexOf(this.state.code) !== -1 )
                     conflicts.push(i+": "+this.props.blocosData[i][j].label);
 
-        if(conflicts.length == 0)
+        if(conflicts.length === 0)
             return false;
 
         return conflicts
@@ -87,10 +85,10 @@ class EditorDisc extends Component {
 		}
 
         for(let i in this.props.blocosData[this.state.inst.value])
-            if(this.props.blocosData[this.state.inst.value][i].cursadas.indexOf(this.state.code) != -1 || this.props.blocosData[this.state.inst.value][i].aproveitadas.indexOf(this.state.code) != -1)
+            if(this.props.blocosData[this.state.inst.value][i].cursadas.indexOf(this.state.code) !== -1 || this.props.blocosData[this.state.inst.value][i].aproveitadas.indexOf(this.state.code) !== -1)
                 conflitos.blocos.push(this.props.blocosData[this.state.inst.value][i].label)
             
-		return (conflitos.blocos.length == 0)?false:conflitos;
+		return (conflitos.blocos.length === 0)?false:conflitos;
 	}
 
 	checkIsDeleteOk = () => {
@@ -117,7 +115,7 @@ class EditorDisc extends Component {
 	}
 
     checkExistence = () =>{
-        if(this.state.inst.value == this.state.newInst.value && this.state.code == this.state.newCode) return false;
+        if(this.state.inst.value === this.state.newInst.value && this.state.code === this.state.newCode) return false;
 
         if(this.props.disciplinasData[this.state.newInst.value] && this.props.disciplinasData[this.state.newInst.value][this.state.newCode]){
             return true;
@@ -126,9 +124,9 @@ class EditorDisc extends Component {
         return false
     }
 
-    isEmpty = () => this.state.code && (this.state.newName == "" || this.state.newCode == "" || this.state.newHours <= 0);
+    isEmpty = () => this.state.code && (this.state.newName === "" || this.state.newCode === "" || this.state.newHours <= 0);
 
-    isEqual = () => (this.state.code == this.state.newCode && this.state.name == this.state.newName && this.state.hours == this.state.newHours && this.state.inst.value == this.state.newInst.value);
+    isEqual = () => (this.state.code === this.state.newCode && this.state.name === this.state.newName && this.state.hours === this.state.newHours && this.state.inst.value === this.state.newInst.value);
 
 
     editDisc= () => {
@@ -175,7 +173,7 @@ class EditorDisc extends Component {
         if(this.state.inst && this.state.disc){
             let conflicts = this.restrictionChecker();
 
-            isOk  = !(!this.isEqual() && !this.isEmpty() && ((this.checkExistence() && this.state.code != this.state.newCode) || conflicts) )
+            isOk  = !(!this.isEqual() && !this.isEmpty() && ((this.checkExistence() && this.state.code !== this.state.newCode) || conflicts) )
             
             if(!isOk && conflicts){
                 warning = 
@@ -189,7 +187,7 @@ class EditorDisc extends Component {
                 
             }
 
-            else if(!this.state.isProcessingData && !isOk && this.checkExistence() && this.state.code != this.state.newCode){
+            else if(!this.state.isProcessingData && !isOk && this.checkExistence() && this.state.code !== this.state.newCode){
                 warning = <Typography>
                         <h3 style={{color: "red"}}>Esse código já está sendo usado nessa instituição de ensino!</h3>
                     </Typography>

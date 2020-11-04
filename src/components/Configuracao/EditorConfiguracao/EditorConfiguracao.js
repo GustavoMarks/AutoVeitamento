@@ -1,15 +1,13 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
-import TextInput from '../../DataReceivers/TextInput/TextInput';
 import SelectInput from '../../DataReceivers/SelectInput/SelectInput';
 import willContinue from "../../../utilities/confirmAlert";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import Slider from '@material-ui/core/Slider';
@@ -32,7 +30,7 @@ class EditorConfiguracao extends Component {
 	}
 
 	confirmResetOfBlocks = () => {
-		if(this.state.inst && this.state.newInst && this.state.inst.value != this.state.newInst.value){
+		if(this.state.inst && this.state.newInst && this.state.inst.value !== this.state.newInst.value){
 			confirmAlert({
 				customUI: ({ onClose }) => {
 					return (
@@ -88,12 +86,12 @@ class EditorConfiguracao extends Component {
 
 	fieldHandler = (field, data) => this.setState({[field]: data});
 
-	isEqual = () => this.state.inst && this.state.newInst && this.state.coord && this.state.newCoord && this.state.course && this.state.newCourse && this.state.city && this.state.newCity && this.state.inst.value == this.state.newInst.value && this.state.coord.value == this.state.newCoord.value && this.state.course.value == this.state.newCourse.value && this.state.city.value == this.state.newCity.value && this.state.percent == this.state.newPercent;
+	isEqual = () => this.state.inst && this.state.newInst && this.state.coord && this.state.newCoord && this.state.course && this.state.newCourse && this.state.city && this.state.newCity && this.state.inst.value === this.state.newInst.value && this.state.coord.value === this.state.newCoord.value && this.state.course.value === this.state.newCourse.value && this.state.city.value === this.state.newCity.value && this.state.percent === this.state.newPercent;
 
 	editPreferences = ()=>{
 		  
 		
-		if(this.state.inst && this.state.newInst && this.state.inst.value != this.state.newInst.value){
+		if(this.state.inst && this.state.newInst && this.state.inst.value !== this.state.newInst.value){
 			
 			const electron = window.require('electron');
 			const fs = electron.remote.require('fs');
@@ -183,7 +181,7 @@ class EditorConfiguracao extends Component {
 		if(this.state.backToMain)
 			return this.props.location&&this.props.location.state&&this.props.location.state.redirectRoute?<Redirect to={{ pathname: this.props.location.state.redirectRoute, state: { inMainWindow: true }}}/>:<Redirect to="/"/>
 
-		let isOk =  !(!this.isEqual() && this.state.inst && this.state.newInst && this.state.inst.value != this.state.newInst.value);
+		let isOk =  !(!this.isEqual() && this.state.inst && this.state.newInst && this.state.inst.value !== this.state.newInst.value);
 
 		let warning;
 

@@ -19,7 +19,7 @@ const textInput = props => {
 		<div class={`form-group`}>
 			<Typography>
 				<label for={props.id}>{props.label}</label>
-				<input type={props.type == 'number' ? "number" : "text"}
+				<input type={props.type === 'number' ? "number" : "text"}
 						class="form-control" 
 						id={props.id}
 						aria-describedby={`${props.id}Desc`} 
@@ -27,9 +27,9 @@ const textInput = props => {
 						value={props.value}
 						autoFocus={props.focus}
 						onChange={(e) => {
-							if (props.type == 'code')
+							if (props.type === 'code')
 								props.updateState(e.target.value.toUpperCase());
-							else if(props.type == 'number')
+							else if(props.type === 'number')
 								props.updateState(Number(e.target.value));
 							else
 								props.updateState(e.target.value);

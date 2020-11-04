@@ -57,16 +57,16 @@ const reducer = (state = initialState, action)=>{
 			if(!action.payload.data || !action.payload.name)
 				return muttableState;
 
-			if(!action.payload.specifier && action.payload.type == 'data' && action.payload.id){
+			if(!action.payload.specifier && action.payload.type === 'data' && action.payload.id){
 				if(!muttableState.databaseData[action.payload.name]) muttableState.databaseData[action.payload.name] = {}
 				muttableState.databaseData[action.payload.name][action.payload.id] = action.payload.data;
 			}
 				
-			else if(!action.payload.specifier && action.payload.type == 'select'){
+			else if(!action.payload.specifier && action.payload.type === 'select'){
 				let shouldAdd = true;
 				let newArray = []
-				muttableState.databaseData[action.payload.name].map((c)=>{
-					if(c.value == action.payload.data.value){
+				muttableState.databaseData[action.payload.name].forEach((c)=>{
+					if(c.value === action.payload.data.value){
 						shouldAdd = false
 						newArray.push(action.payload.data);
 					}
@@ -86,18 +86,18 @@ const reducer = (state = initialState, action)=>{
 				}
 			}
 
-			else if(action.payload.specifier && action.payload.type == 'data' && action.payload.id){
+			else if(action.payload.specifier && action.payload.type === 'data' && action.payload.id){
 				if(!muttableState.databaseData[action.payload.name][action.payload.specifier]) muttableState.databaseData[action.payload.name][action.payload.specifier] = {}
 				muttableState.databaseData[action.payload.name][action.payload.specifier][action.payload.id] = action.payload.data;
 			}
 
-			else if(action.payload.specifier && action.payload.type == 'select'){
+			else if(action.payload.specifier && action.payload.type === 'select'){
 				let shouldAdd = true;
 				let newArray = []
 				if(!muttableState.databaseData[action.payload.name][action.payload.specifier]) muttableState.databaseData[action.payload.name][action.payload.specifier] = []
 
-				muttableState.databaseData[action.payload.name][action.payload.specifier].map((c)=>{
-					if(c.value == action.payload.data.value){
+				muttableState.databaseData[action.payload.name][action.payload.specifier].forEach((c)=>{
+					if(c.value === action.payload.data.value){
 						shouldAdd = false
 						newArray.push(action.payload.data);
 					}
@@ -128,30 +128,30 @@ const reducer = (state = initialState, action)=>{
 				return muttableState;
 
 			// Dados com id sem especificador. ex: alunosData
-			if(!action.payload.specifier && action.payload.type == 'data' && action.payload.id && action.payload.prevId){
+			if(!action.payload.specifier && action.payload.type === 'data' && action.payload.id && action.payload.prevId){
 				delete muttableState.databaseData[action.payload.name][action.payload.prevId];
 				muttableState.databaseData[action.payload.name][action.payload.id] = action.payload.data;
 			}
 			// Select sem especificador. ex: alunosSelect
-			else if(!action.payload.specifier && action.payload.type == 'select' && action.payload.prevId){
+			else if(!action.payload.specifier && action.payload.type === 'select' && action.payload.prevId){
 				muttableState.databaseData[action.payload.name] = muttableState.databaseData[action.payload.name]
-					.filter( cur => cur.value != action.payload.prevId);
+					.filter( cur => cur.value !== action.payload.prevId);
 				muttableState.databaseData[action.payload.name].push(action.payload.data);
 				muttableState.databaseData[action.payload.name] = muttableState.databaseData[action.payload.name].sort(objOpe.comparator);
 			}
 
 			// Dados com id com especificador. ex: disciplinasData
-			else if(action.payload.specifier && action.payload.type == 'data' && action.payload.id && action.payload.prevSpecifier && action.payload.prevId){
+			else if(action.payload.specifier && action.payload.type === 'data' && action.payload.id && action.payload.prevSpecifier && action.payload.prevId){
 				if(!muttableState.databaseData[action.payload.name][action.payload.specifier]) muttableState.databaseData[action.payload.name][action.payload.specifier] = {}
 				delete muttableState.databaseData[action.payload.name][action.payload.prevSpecifier][action.payload.prevId];
 				muttableState.databaseData[action.payload.name][action.payload.specifier][action.payload.id] = action.payload.data;
 			}
 
 			// Select com especificador. ex: disciplinasSelect
-			else if(action.payload.specifier && action.payload.type == 'select'){
+			else if(action.payload.specifier && action.payload.type === 'select'){
 				if(!muttableState.databaseData[action.payload.name][action.payload.specifier]) muttableState.databaseData[action.payload.name][action.payload.specifier] = []
 				muttableState.databaseData[action.payload.name][action.payload.prevSpecifier] = muttableState.databaseData[action.payload.name][action.payload.prevSpecifier]
-					.filter( cur => cur.value != action.payload.prevId);
+					.filter( cur => cur.value !== action.payload.prevId);
 				muttableState.databaseData[action.payload.name][action.payload.specifier].push(action.payload.data);
 				muttableState.databaseData[action.payload.name][action.payload.specifier] = muttableState.databaseData[action.payload.name][action.payload.specifier].sort(objOpe.comparator);
 			}
@@ -168,28 +168,28 @@ const reducer = (state = initialState, action)=>{
 				return muttableState;
 
 			// Dados com id sem especificador. ex: alunosData
-			if(!action.payload.specifier && action.payload.type == 'data'){
+			if(!action.payload.specifier && action.payload.type === 'data'){
 				delete muttableState.databaseData[action.payload.name][action.payload.id];
 			}
 			// Select com id sem especificador. ex: alunosSelect
-			else if(!action.payload.specifier && action.payload.type == 'select'){
+			else if(!action.payload.specifier && action.payload.type === 'select'){
 				
 				muttableState.databaseData[action.payload.name] = muttableState.databaseData[action.payload.name]
-					.filter( cur => cur.value != action.payload.id);
+					.filter( cur => cur.value !== action.payload.id);
 			}
 
 			// Dados com id com especificador. ex: disciplinasData
-			else if(action.payload.specifier && action.payload.type == 'data' && action.payload.specifier){
+			else if(action.payload.specifier && action.payload.type === 'data' && action.payload.specifier){
 
 				delete muttableState.databaseData[action.payload.name][action.payload.specifier][action.payload.id];
 			}
 
 			// Select com id com especificador. ex: disciplinasSelect
 			
-			else if(action.payload.specifier && action.payload.type == 'select'){
+			else if(action.payload.specifier && action.payload.type === 'select'){
 
 				muttableState.databaseData[action.payload.name][action.payload.specifier] = muttableState.databaseData[action.payload.name][action.payload.specifier]
-					.filter( cur => cur.value != action.payload.id);
+					.filter( cur => cur.value !== action.payload.id);
 			}
 			
 			fs.writeFileSync(`./src/database/${action.payload.name}.json`, JSON.stringify(muttableState.databaseData[action.payload.name], null, 4));
@@ -199,18 +199,18 @@ const reducer = (state = initialState, action)=>{
 		case actionTypes.REPLACE_FILE:// Troca o conteúdo de um arquivo pelo campo de data no payload da action
 		// Recebe: name, data, type ('select' ou 'data')
 			
-			if(action.payload.type == 'select'){
+			if(action.payload.type === 'select'){
 				muttableState.databaseData[action.payload.name] = [...action.payload.data]
 			}
-			else if(action.payload.type == 'data'){
+			else if(action.payload.type === 'data'){
 				muttableState.databaseData[action.payload.name] = {...action.payload.data}
 			}
-			else if(action.payload.type == 'config'){
+			else if(action.payload.type === 'config'){
 				muttableState.preferences = {...action.payload.data};
 				fs.writeFileSync(`./src/database/configuracoes.json`, JSON.stringify(muttableState.preferences, null, 4));
 				return muttableState;
 			}
-			else if(action.payload.type == 'session'){
+			else if(action.payload.type === 'session'){
 				muttableState.sessions = {...action.payload.data};
 				fs.writeFileSync(`./src/database/sessions.json`, JSON.stringify(muttableState.sessions, null, 4));
 				return muttableState;

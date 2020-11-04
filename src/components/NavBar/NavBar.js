@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "./NavBar.css"
-import { BrowserRouter as BrowserRouter, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import HomeIcon from '@material-ui/icons/Home';
 import HelpIcon from '@material-ui/icons/Help';

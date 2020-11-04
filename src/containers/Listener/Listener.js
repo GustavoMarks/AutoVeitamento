@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
 import * as actionTypes from '../../actions/actionTypes';
-import objCmp from '../../utilities/objectComparator';
 
 const listener = (props) =>{
 	const electron = window.require('electron');
@@ -145,12 +144,6 @@ const listener = (props) =>{
 
 	return props.children
 } 
-
-const mapStateToProps = state =>{
-	return{
-		newData: state.newData
-	}
-}
 
 const mapDispatchToProps = dispatch => {
 	return {

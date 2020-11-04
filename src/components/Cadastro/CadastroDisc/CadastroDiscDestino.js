@@ -1,13 +1,10 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
 import SelectInput from '../../DataReceivers/SelectInput/SelectInput';
 import willContinue from "../../../utilities/confirmAlert";
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 
@@ -79,7 +76,7 @@ class CadastroDiscDestino extends Component {
             warning = <h3 style={{color: 'red'}}>Já existe uma disciplina cadastrada com esse código!</h3>
         }
 
-        if(this.state.hours < 0 || this.state.hours % 1 != 0){
+        if(this.state.hours < 0 || this.state.hours % 1 !== 0){
             warning = <h3 style={{color: 'red'}}>A carga horária deve ser um valor inteiro e positivo!</h3>
         }
         
@@ -154,7 +151,7 @@ class CadastroDiscDestino extends Component {
                             link="/cadastroInst"
                             linkText="Cadastrar nova Instituição de Ensino "
                             disabled={true}
-                            focus={!(this.state.inst == null && this.props.stack && this.props.stack.length > 0 && this.props.stack[this.props.stack.length -1].route == '/cadastroDisc' && this.props.stack[this.props.stack.length -1].data)}
+                            focus={!(this.state.inst === null && this.props.stack && this.props.stack.length > 0 && this.props.stack[this.props.stack.length -1].route === '/cadastroDisc' && this.props.stack[this.props.stack.length -1].data)}
                         />
                         </div>
                     </Slide>
@@ -168,11 +165,11 @@ class CadastroDiscDestino extends Component {
                             component="div"
                             variant="contained"
                             color="primary"
-                            disabled={(this.isEmpty() || !isOk) || this.state.hours < 0 || this.state.hours % 1 != 0}
+                            disabled={(this.isEmpty() || !isOk) || this.state.hours < 0 || this.state.hours % 1 !== 0}
                             onClick={()=>{this.registerDisc()}} >
                                 Cadastrar Disciplina
                         </Button>
-                        <Slide in={!isOk || this.state.hours < 0 || this.state.hours % 1 != 0} direction="right">
+                        <Slide in={!isOk || this.state.hours < 0 || this.state.hours % 1 !== 0} direction="right">
                             <div>
                                 {warning}
                             </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import './DiscDetailsInput.css';
-import { Typography } from "@material-ui/core";
 
 /**
  * @param {String} props.id Identificador único do campo de Detalhes de Disciplina
@@ -15,7 +14,7 @@ import { Typography } from "@material-ui/core";
 const discDetailsInput = props => {
 	let field;
 	
-	if(props.type == 'cursada'){
+	if(props.type === 'cursada'){
 		field = <input type="text"  
 					   class="discDetailsInputSemestre"
 					   id={props.id+"field"}
@@ -25,7 +24,7 @@ const discDetailsInput = props => {
 					   
 					   />;
 	}
-	else if (props.type == 'aproveitada'){
+	else if (props.type === 'aproveitada'){
 		field = <input type="number" 
 					id={props.id+"field"}
 					class="discDetailsInputHoras"
@@ -41,7 +40,7 @@ const discDetailsInput = props => {
 
 	return(
 		<div className={
-			"discDetailsInputDiv "+(props.type == 'cursada'? "discDetailsInputColorBlue" : "discDetailsInputColorGreen")
+			"discDetailsInputDiv "+(props.type === 'cursada'? "discDetailsInputColorBlue" : "discDetailsInputColorGreen")
 		}>
 				<p className="discDetailsInputP">{props.disciplina.nome} - {props.disciplina.codigo} - {props.disciplina.horas}h</p>
 				<br/>
@@ -65,7 +64,7 @@ const discDetailsInput = props => {
 							}}
 						/>
 					{"          ".replace(/ /g, "\u00a0")}
-					<label for={props.id+"field"} className="discDetailsInputP">{props.type == 'cursada'?"Semestre letivo:":"Horas aproveitadas:"}</label>
+					<label for={props.id+"field"} className="discDetailsInputP">{props.type === 'cursada'?"Semestre letivo:":"Horas aproveitadas:"}</label>
 					{field}
 				</div>
 		</div>

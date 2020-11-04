@@ -1,18 +1,14 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import SelectInput from "../../DataReceivers/SelectInput/SelectInput";
 import FilterComponent from "../FilterComponent/FilterComponent";
-import FilterSelect from "../FilterSelect/FilterSelect";
 import Slide from '@material-ui/core/Slide';
 import "./ConsultaUnidade.css";
 import Typography from "@material-ui/core/Typography";
-import Checkbox from '@material-ui/core/Checkbox';
 import Grow from '@material-ui/core/Grow';
 import Button from '@material-ui/core/Button';
 import OrdinaryDisplay from "../DisplayComponents/OrdinaryDisplay/OrdinaryDisplay";
-import FilterSelectMulti from "../FilterSelectMulti/FilterSelectMulti";
-import MultiRowDisplay from "../DisplayComponents/MultiRowDisplay/MultiRowDisplay";
 
 class ConsultaUnidade extends Component {
 
@@ -57,7 +53,7 @@ class ConsultaUnidade extends Component {
                 curr => {
                     let professoresLotados = 0;
                     for(let i in this.props.professoresData){
-                        if(this.props.professoresData[i].dep == curr.value)
+                        if(this.props.professoresData[i].dep === curr.value)
                             professoresLotados ++;
                     }
                     return professoresLotados >= this.state.nprof
@@ -78,7 +74,7 @@ class ConsultaUnidade extends Component {
         if(this.state.choosenUnit){
             let professoresLotados = 0;
             for(let i in this.props.professoresData){
-                if(this.props.professoresData[i].dep == this.state.choosenUnit.value)
+                if(this.props.professoresData[i].dep === this.state.choosenUnit.value)
                     professoresLotados ++;
             }
             display = <Slide in={this.state.choosenUnit} direction="right">

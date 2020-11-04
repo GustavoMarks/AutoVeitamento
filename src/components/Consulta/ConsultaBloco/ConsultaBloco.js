@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import SelectInput from "../../DataReceivers/SelectInput/SelectInput";
 import FilterComponent from "../FilterComponent/FilterComponent";
@@ -7,7 +7,6 @@ import FilterSelect from "../FilterSelect/FilterSelect";
 import Slide from '@material-ui/core/Slide';
 import "./ConsultaBloco.css";
 import Typography from "@material-ui/core/Typography";
-import Checkbox from '@material-ui/core/Checkbox';
 import Grow from '@material-ui/core/Grow';
 import Button from '@material-ui/core/Button';
 import OrdinaryDisplay from "../DisplayComponents/OrdinaryDisplay/OrdinaryDisplay";
@@ -57,14 +56,14 @@ class ConsultaBloco extends Component {
         if(this.state.solicitadorToggle){
             options = options.filter(
                 curr => {
-                    return this.props.blocosData[this.state.choosenInst.value][curr.value].solicitador == this.state.solicitador.value;
+                    return this.props.blocosData[this.state.choosenInst.value][curr.value].solicitador === this.state.solicitador.value;
                 }
             );
         }
         if(this.state.pareceristaToggle){
             options = options.filter(
                 curr => {
-                    return this.props.blocosData[this.state.choosenInst.value][curr.value].parecerista == this.state.parecerista.value;
+                    return this.props.blocosData[this.state.choosenInst.value][curr.value].parecerista === this.state.parecerista.value;
                 }
             );
         }
@@ -78,7 +77,7 @@ class ConsultaBloco extends Component {
         if(this.state.dateToggle){
             options = options.filter(
                 curr => {
-                    return this.props.blocosData[this.state.choosenInst.value][curr.value].data.toUpperCase() == this.state.date.toUpperCase();
+                    return this.props.blocosData[this.state.choosenInst.value][curr.value].data.toUpperCase() === this.state.date.toUpperCase();
                 }
             );
         }
@@ -86,7 +85,7 @@ class ConsultaBloco extends Component {
             options = options.filter(
                 curr => {
                     for(let i in this.state.origem){
-                        if(this.props.blocosData[this.state.choosenInst.value][curr.value].cursadas.indexOf(this.state.origem[i].value) == -1)
+                        if(this.props.blocosData[this.state.choosenInst.value][curr.value].cursadas.indexOf(this.state.origem[i].value) === -1)
                             return false
                     }
                     return true;
@@ -97,7 +96,7 @@ class ConsultaBloco extends Component {
             options = options.filter(
                 curr => {
                     for(let i in this.state.destino){
-                        if(this.props.blocosData[this.state.choosenInst.value][curr.value].aproveitadas.indexOf(this.state.destino[i].value) == -1)
+                        if(this.props.blocosData[this.state.choosenInst.value][curr.value].aproveitadas.indexOf(this.state.destino[i].value) === -1)
                             return false
                     }
                     return true;

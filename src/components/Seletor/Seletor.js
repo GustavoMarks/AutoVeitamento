@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./Seletor.css";
-import { BrowserRouter as BrowserRouter, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../actions/actionTypes';
 import Button from '@material-ui/core/Button';

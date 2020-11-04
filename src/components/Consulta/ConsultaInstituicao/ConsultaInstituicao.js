@@ -1,18 +1,14 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import SelectInput from "../../DataReceivers/SelectInput/SelectInput";
 import FilterComponent from "../FilterComponent/FilterComponent";
-import FilterSelect from "../FilterSelect/FilterSelect";
 import Slide from '@material-ui/core/Slide';
 import "./ConsultaInstituicao.css";
 import Typography from "@material-ui/core/Typography";
-import Checkbox from '@material-ui/core/Checkbox';
 import Grow from '@material-ui/core/Grow';
 import Button from '@material-ui/core/Button';
 import OrdinaryDisplay from "../DisplayComponents/OrdinaryDisplay/OrdinaryDisplay";
-import FilterSelectMulti from "../FilterSelectMulti/FilterSelectMulti";
-import MultiRowDisplay from "../DisplayComponents/MultiRowDisplay/MultiRowDisplay";
 
 class ConsultaInstituicao extends Component {
 

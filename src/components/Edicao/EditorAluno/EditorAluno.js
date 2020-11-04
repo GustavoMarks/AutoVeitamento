@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../../actions/actionTypes';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
@@ -10,7 +10,6 @@ import denyDeletePopup from "../DenyDeletePopup/DenyDeletePopup";
 import confirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import dateUtils from '../../../utilities/dateUtilities.js';
@@ -56,14 +55,14 @@ class EditorAluno extends Component {
 			aproveitamentos: []
 		}
 		for(let i in this.props.aproveitamentosData)
-			if(this.props.aproveitamentosData[i].aluno == this.state.mat)
+			if(this.props.aproveitamentosData[i].aluno === this.state.mat)
 				conflitos.aproveitamentos.push(this.props.aproveitamentosData[i].label)
 		
 		for(let i in this.props.session)
-			if(this.props.session[i].state.aluno == this.state.mat)
+			if(this.props.session[i].state.aluno === this.state.mat)
 				conflitos.sessoes.push(this.props.session[i].label)
 		
-		return (conflitos.sessoes.length == 0 && conflitos.aproveitamentos.length == 0)?false:conflitos;
+		return (conflitos.sessoes.length === 0 && conflitos.aproveitamentos.length === 0)?false:conflitos;
 	}
 
 	checkIsDeleteOk = () => {
@@ -110,11 +109,11 @@ class EditorAluno extends Component {
 				prevId: parseInt(this.state.mat)
 			});
 
-			if(this.state.mat != this.state.newMat || this.state.name || this.state.newName){
+			if(this.state.mat !== this.state.newMat || this.state.name || this.state.newName){
 				let newAprData = JSON.parse(JSON.stringify(this.props.aproveitamentosData, null, 4));
 
 				for(let i in newAprData){
-					if(newAprData[i].aluno == this.state.mat){
+					if(newAprData[i].aluno === this.state.mat){
 						newAprData[i].aluno = this.state.newMat;
 						newAprData[i].label = `${this.state.newMat}: ${this.state.newName} (${newAprData[i].inst}) em ${dateUtils.getStringWithHours(newAprData[i].initialDate)}`;	
 					}
@@ -127,7 +126,7 @@ class EditorAluno extends Component {
 				});
 			
 				let newAprSelect = this.props.aproveitamentosSelect.map(curr => {
-					if( this.props.aproveitamentosData[curr.value].aluno == this.state.mat ){
+					if( this.props.aproveitamentosData[curr.value].aluno === this.state.mat ){
 						return {
 							label: `${this.state.newMat}: ${this.state.newName} (${this.props.aproveitamentosData[curr.value].inst}) em ${dateUtils.getStringWithHours(this.props.aproveitamentosData[curr.value].initialDate)}`,
 							value: curr.value
@@ -145,7 +144,7 @@ class EditorAluno extends Component {
 				let newSessions = {...this.props.session}
 				
 				for(let i in newSessions){
-					if(newSessions[i].state.aluno == this.state.mat){
+					if(newSessions[i].state.aluno === this.state.mat){
 						newSessions[i].state.aluno = this.state.newMat
 						newSessions[i].label = `${this.state.newMat}: ${this.state.newName} - ${newSessions[i].state.inst?newSessions[i].state.inst:'Instituição não definida'} - ${dateUtils.getRawStringWithHours(newSessions[i].id)}`
 					}
@@ -166,7 +165,7 @@ class EditorAluno extends Component {
 	
 	isEmpty = () => !this.state.newMat || !this.state.newCpf || !this.state.newName || this.state.newCpf.length < 11;
 	
-	isEqual = () => this.state.name == this.state.newName && this.state.mat == parseInt(this.state.newMat) && this.state.cpf == this.state.newCpf;
+	isEqual = () => this.state.name === this.state.newName && this.state.mat === parseInt(this.state.newMat) && this.state.cpf === this.state.newCpf;
 	
 
     render(){
@@ -174,7 +173,7 @@ class EditorAluno extends Component {
 
 		let renderedComponents;
 
-		let isOk =  !(!this.isEmpty() && !this.isEqual() && ((this.state.mat != this.state.newMat && this.checkExistence()) ||  !this.state.isCPFValid));
+		let isOk =  !(!this.isEmpty() && !this.isEqual() && ((this.state.mat !== this.state.newMat && this.checkExistence()) ||  !this.state.isCPFValid));
 
         let warning;
 

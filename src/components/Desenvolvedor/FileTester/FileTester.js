@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link } from "react-router-dom";
 
 export default class FileTester extends Component {
 	state = {}

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./EditorBloc.css"
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import * as actionTypes from '../../../actions/actionTypes';
@@ -13,7 +13,6 @@ import objComp from "../../../utilities/objectComparator";
 import denyDeletePopup from "../DenyDeletePopup/DenyDeletePopup";
 import confirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
@@ -72,13 +71,13 @@ class EditorBloc extends Component {
         let origin = [];
         let destiny = [];
 
-        this.props.disciplinasSelect[this.state.inst.value].map((curr)=>{
-            if(this.props.blocosData[this.state.inst.value][data.value].cursadas.indexOf(curr.value) != -1 )
+        this.props.disciplinasSelect[this.state.inst.value].forEach((curr)=>{
+            if(this.props.blocosData[this.state.inst.value][data.value].cursadas.indexOf(curr.value) !== -1 )
                 origin.push(curr);
         });
 
-        this.props.disciplinasSelect[this.props.configuracoes.instituicaoSelect.value].map((curr)=>{
-            if(this.props.blocosData[this.state.inst.value][data.value].aproveitadas.indexOf(curr.value) != -1)
+        this.props.disciplinasSelect[this.props.configuracoes.instituicaoSelect.value].forEach((curr)=>{
+            if(this.props.blocosData[this.state.inst.value][data.value].aproveitadas.indexOf(curr.value) !== -1)
                 destiny.push(curr);
         });
 
@@ -118,15 +117,15 @@ class EditorBloc extends Component {
 
         for(let i in this.props.sessions)
             for(let j in this.props.sessions[i].state.blocks)
-                if(this.props.sessions[i].state.blocks == this.state.bloc.value)
+                if(this.props.sessions[i].state.blocks === this.state.bloc.value)
                     conflitos.sessoes.push(this.props.sessions[i].label)
         
         for(let i in this.props.aproveitamentosData)
             for(let j in this.props.aproveitamentosData[i].blocos)
-                if(this.props.aproveitamentosData[i].blocos[j].codigo == this.state.bloc.value)
+                if(this.props.aproveitamentosData[i].blocos[j].codigo === this.state.bloc.value)
                     conflitos.aproveitamentos.push(this.props.aproveitamentosData[i].label)
 
-        return (conflitos.sessoes.length == 0 && conflitos.aproveitamentos.length == 0)?false:conflitos;
+        return (conflitos.sessoes.length === 0 && conflitos.aproveitamentos.length === 0)?false:conflitos;
     }
 
     checkIsDeleteOk = () => {
@@ -153,13 +152,13 @@ class EditorBloc extends Component {
     }
 
 
-    isEmpty = () => this.state.newOrigin.length == 0 || this.state.newDestiny.length == 0 || !this.state.newSolicitador;
+    isEmpty = () => this.state.newOrigin.length === 0 || this.state.newDestiny.length === 0 || !this.state.newSolicitador;
 
     isEqual = () => objComp.compareArrNonOrdered(this.state.origin.map((c)=>c.value), this.state.newOrigin.map((c)=>c.value)) &&
                     objComp.compareArrNonOrdered(this.state.destiny.map((c)=>c.value), this.state.newDestiny.map((c)=>c.value)) &&
-                    this.state.parecerista == this.state.newParecerista && 
-                    this.state.solicitador == this.state.newSolicitador &&
-                    this.state.obs == this.state.newObs;
+                    this.state.parecerista === this.state.newParecerista && 
+                    this.state.solicitador === this.state.newSolicitador &&
+                    this.state.obs === this.state.newObs;
 
     checkExistence = () => {
         
@@ -179,13 +178,13 @@ class EditorBloc extends Component {
 
         for(let i in this.props.aproveitamentosData){
             for(let j in this.props.aproveitamentosData[i].blocos){
-                if(this.props.aproveitamentosData[i].blocos[j].codigo == this.state.bloc.value)
-                    if(conflicts.indexOf(this.props.aproveitamentosData[i].label) == -1)
+                if(this.props.aproveitamentosData[i].blocos[j].codigo === this.state.bloc.value)
+                    if(conflicts.indexOf(this.props.aproveitamentosData[i].label) === -1)
                         conflicts.push(this.props.aproveitamentosData[i].label)
             }
         }
 
-        if(conflicts.length == 0)
+        if(conflicts.length === 0)
             return false;
 
         return conflicts
@@ -198,7 +197,7 @@ class EditorBloc extends Component {
         let conflicts = [];
         let currentBlock = this.generateUniqueStrings('origin', 'destiny').value;
         for(let i in this.props.sessions){
-            if(this.props.sessions[i].state.origin[currentBlock] && conflicts.indexOf(currentBlock) == -1){
+            if(this.props.sessions[i].state.origin[currentBlock] && conflicts.indexOf(currentBlock) === -1){
                 conflicts.push(this.props.sessions[i].label);
             }
         }
@@ -245,14 +244,12 @@ class EditorBloc extends Component {
         let somaDeCargasHoráriasDestino = 0;
 
 
-        this.state.newOrigin.map( curr => {
+        this.state.newOrigin.forEach( curr => {
             somaDeCargasHoráriasOrigem += Number(this.props.disciplinasData[this.state.inst.value][curr.value].horas);
-            return;
         });
 
-        this.state.newDestiny.map( curr => {
+        this.state.newDestiny.forEach( curr => {
             somaDeCargasHoráriasDestino += Number(this.props.disciplinasData[this.props.configuracoes.instituicaoSelect.value][curr.value].horas);
-            return;
         });
 
         const proporcao = (this.props.configuracoes.percent/100)*somaDeCargasHoráriasDestino;
@@ -296,17 +293,12 @@ class EditorBloc extends Component {
             if (a.value > b.value) return 1;
             return 0;
         });
-        let ordenedDestiny = this.state[destiny].sort((a, b)=>{
-            if (a.value < b.value) return -1;
-            if (a.value > b.value) return 1;
-            return 0;
-        });
 
         let originString = "";
         let originStringReadable = "";
 
-        ordenedOrigin.map((current, index)=>{
-            if(index == ordenedOrigin.length-1 ){
+        ordenedOrigin.forEach((current, index)=>{
+            if(index === ordenedOrigin.length-1 ){
                 originString += current.value;
                 originStringReadable += current.value;
             }
@@ -314,31 +306,19 @@ class EditorBloc extends Component {
                 originString += current.value + "|";
                 originStringReadable += current.value + ", ";
             }
-            return ;
         });
 
-        if(originString[originString.length-1] == "|"){
+        if(originString[originString.length-1] === "|"){
             originString = originString.slice(0, -1);
         }
 
         let destinyString = "";
         let destinyStringReadable = "";        
 
-        let destinyArray = ordenedDestiny.map((current, index)=>{
-            if(index == ordenedDestiny.length-1 ){
-                destinyString += current.value;
-                destinyStringReadable += current.value;
-            }
-            else{
-                destinyString += current.value + "|";
-                destinyStringReadable += current.value + ", ";   
-            }
-            return current.value
-        });
 
         
 
-        if(destinyString[destinyString.length-1] == "|"){
+        if(destinyString[destinyString.length-1] === "|"){
             destinyString = destinyString.slice(0, -1);
         }
 

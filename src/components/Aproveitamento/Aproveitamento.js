@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actionTypes from '../../actions/actionTypes';
 import DiscDetailsInput from '../DataReceivers/DiscDetailsInput/DiscDetailsInput';
@@ -77,7 +77,7 @@ class Aproveitamento extends Component {
 
         for(let i in tempState.destiny){
             for(let j in tempState.destiny[i]){
-                if(Number(tempState.destiny[i][j].horasApr) % 1 != 0){
+                if(Number(tempState.destiny[i][j].horasApr) % 1 !== 0){
                     tempState.destiny[i][j].horasApr = Number(tempState.destiny[i][j].horasApr).toFixed(0);
                     alterations.push(tempState.destiny[i][j].disciplina.nome);
                 }
@@ -129,7 +129,6 @@ class Aproveitamento extends Component {
         let alunoLabel = (this.state.aluno?this.state.aluno.label:"Aluno não definido");
         let instLabel = (this.state.inst?this.state.inst.value:"Instituição não definida");
         let data = new Date();
-        let stateDate = new Date(this.state.date);
         let dataLabel = `${this.state.date.split('-')[2]}/${this.state.date.split('-')[1]}/${this.state.date.split('-')[0]} ${data.getHours()}:${data.getMinutes() < 10 ? "0"+data.getMinutes() : data.getMinutes()}`
         let savedState = {
             aluno: this.state.aluno?this.state.aluno.value:null,
@@ -198,7 +197,7 @@ class Aproveitamento extends Component {
     discDetailsInputHandler = (ood,id,index,field, data) => {
         let tempState = {...this.state};
         tempState[ood][id][index][field] = data;
-        if(ood == 'destiny' && field == 'nota')
+        if(ood === 'destiny' && field === 'nota')
             tempState.shouldAutoFill = false
         this.setState(tempState, ()=>{
             this.autofillGrades();
@@ -229,7 +228,7 @@ class Aproveitamento extends Component {
                         return
 
                     origin[current.value] = {}
-                    this.props.blocosData[this.state.inst.value][current.value].cursadas.map((curr)=>{
+                    this.props.blocosData[this.state.inst.value][current.value].cursadas.forEach((curr)=>{
                         origin[current.value][curr] = {
                             id: curr,
                             nota: 0,
@@ -239,7 +238,7 @@ class Aproveitamento extends Component {
                     });
 
                     destiny[current.value] = {};
-                    this.props.blocosData[this.state.inst.value][current.value].aproveitadas.map((curr)=>{
+                    this.props.blocosData[this.state.inst.value][current.value].aproveitadas.forEach((curr)=>{
                         destiny[current.value][curr] = {
                             id: curr,
                             nota: 0,
@@ -326,7 +325,6 @@ class Aproveitamento extends Component {
 
         const aprData = this.props.aproveitamentosData[this.state.initialDate];
         let preprocessedData = {}
-        let data = new Date(aprData.initialDate);
         preprocessedData.nomeAluno = this.props.alunosData[aprData.aluno].nome;
         preprocessedData.matriculaAluno = aprData.aluno;
 
@@ -518,7 +516,7 @@ class Aproveitamento extends Component {
 
     isEmpty = () => {
 
-        if(!this.state.aluno || !this.state.inst || !this.state.date || !this.state.professor || this.state.blocks.length == 0 || !this.state.processo || !this.state.cargo)
+        if(!this.state.aluno || !this.state.inst || !this.state.date || !this.state.professor || this.state.blocks.length === 0 || !this.state.processo || !this.state.cargo)
             return true
         for(let i in this.state.origin)
             for(let j in this.state.origin[i])
@@ -541,23 +539,20 @@ class Aproveitamento extends Component {
 
             let failures = [];
 
-            this.state.blocks.map( curr => {
+            this.state.blocks.forEach( curr => {
                 let sumOfHoursOrigin = 0;
                 let sumOfHoursDestiny = 0;
 
-                this.props.blocosData[this.state.inst.value][curr.value].cursadas.map( originDisc => {     
+                this.props.blocosData[this.state.inst.value][curr.value].cursadas.forEach( originDisc => {     
                     sumOfHoursOrigin += Number(this.props.disciplinasData[this.state.inst.value][originDisc].horas);
-                    return;
                 });
                 
-                this.props.blocosData[this.state.inst.value][curr.value].aproveitadas.map( destinyDisc => {
+                this.props.blocosData[this.state.inst.value][curr.value].aproveitadas.forEach( destinyDisc => {
                     sumOfHoursDestiny += Number(this.props.disciplinasData[this.props.configuracoes.instituicaoSelect.value][destinyDisc].horas);
-                    return;
                 });
                 if(sumOfHoursOrigin < sumOfHoursDestiny*minPer)
                     failures.push(curr.value);
 
-                return
             });
 
             return failures;
@@ -675,13 +670,13 @@ class Aproveitamento extends Component {
         if(this.state.inst && this.props.blocosSelect[this.state.inst.value])
             for(let i = 0; i < this.state.blocks.length; i++){
                 let label;
-                this.props.blocosSelect[this.state.inst.value].map((curr)=>{
-                    if(curr.value == blocosIds[i])
+                this.props.blocosSelect[this.state.inst.value].forEach((curr)=>{
+                    if(curr.value === blocosIds[i])
                         label = curr.label;
                 });
 
                 // Não sincronia
-                if(blocosIds.length != this.state.blocks.length){
+                if(blocosIds.length !== this.state.blocks.length){
                     return this.render();
                 }
 
@@ -713,7 +708,7 @@ class Aproveitamento extends Component {
                                 
                             </div>
                             {
-                                blocoAtual.obs != "" ? (<div className="blocosData">
+                                blocoAtual.obs !== "" ? (<div className="blocosData">
                                                             <h4>Observações:</h4>
                                                             <p>{blocoAtual.obs}</p>
                                                         </div>) : (<div className="blocosData">

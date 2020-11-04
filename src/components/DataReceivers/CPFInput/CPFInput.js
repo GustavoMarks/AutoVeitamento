@@ -31,16 +31,16 @@ const textInput = props => {
 		let isValid = true;
 
         let firstVal = ((cpf[0] * 10 + cpf[1] * 9 + cpf[2] * 8 + cpf[3] * 7 + cpf[4] * 6 + cpf[5] * 5 + cpf[6] * 4 + cpf[7] * 3 + cpf[8] * 2)*10)%11;
-        if(firstVal == 10) firstVal = 0;
+        if(firstVal === 10) firstVal = 0;
 
-        if(firstVal != cpf[9]) isValid = false;
+        if(firstVal !== cpf[9]) isValid = false;
 
         let secondVal = ((cpf[0] * 11 + cpf[1] * 10 + cpf[2] * 9 + cpf[3] * 8 + cpf[4] * 7 + cpf[5] * 6 + cpf[6] * 5 + cpf[7] * 4 + cpf[8] * 3 + cpf[9] * 2)*10)%11;
-        if(secondVal == 10) secondVal = 0;
+        if(secondVal === 10) secondVal = 0;
 
-        if(secondVal != cpf[10]) isValid = false;
+        if(secondVal !== cpf[10]) isValid = false;
     
-        if(cpf[0] == cpf[1] && cpf[1] == cpf[2] && cpf[2] == cpf[3] && cpf[3] == cpf[4] && cpf[4] == cpf[5] && cpf[5] == cpf[6] && cpf[6] == cpf[7] && cpf[7] == cpf[8] && cpf[8] == cpf[9] && cpf[9] == cpf[10]) return false
+        if(cpf[0] === cpf[1] && cpf[1] === cpf[2] && cpf[2] === cpf[3] && cpf[3] === cpf[4] && cpf[4] === cpf[5] && cpf[5] === cpf[6] && cpf[6] === cpf[7] && cpf[7] === cpf[8] && cpf[8] === cpf[9] && cpf[9] === cpf[10]) return false
 		
         props.updateValidity(isValid);
 	}
@@ -48,9 +48,9 @@ const textInput = props => {
 	const getMask = () => {
 		let mask = "";
 		for(let i = 0; i< props.value.length; i++){
-			if(i == 3 || i ==  6) mask += "."
+			if(i === 3 || i ===  6) mask += "."
 			
-			if(i == 9) mask += "-"
+			if(i === 9) mask += "-"
 			
 			mask += props.value[i]
 		}

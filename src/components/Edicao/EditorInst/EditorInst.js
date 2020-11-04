@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter as BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
 import TextInput from '../../DataReceivers/TextInput/TextInput';
 import SelectInput from '../../DataReceivers/SelectInput/SelectInput';
@@ -9,7 +9,6 @@ import denyDeletePopup from "../DenyDeletePopup/DenyDeletePopup";
 import confirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import dateUtils from '../../../utilities/dateUtilities.js';
@@ -46,7 +45,7 @@ class EditorInst extends Component {
 
     isEmpty = () => !this.state.newName || !this.state.newCode;
 
-    isEqual = () => this.state.name == this.state.newName && this.state.code == this.state.newCode;
+    isEqual = () => this.state.name === this.state.newName && this.state.code === this.state.newCode;
 
     checkExistence = () => !!this.props.instituicoesData[this.state.newName];
 
@@ -60,7 +59,7 @@ class EditorInst extends Component {
             aproveitamentos: []
 		}
 
-        if(this.props.configuracoes.instituicaoSelect.value == this.state.inst.value){
+        if(this.props.configuracoes.instituicaoSelect.value === this.state.inst.value){
             conflitos.configuracoes.push("Instituição de Origem")
         }
 
@@ -71,14 +70,14 @@ class EditorInst extends Component {
             conflitos.disciplinas.push(this.props.disciplinasData[this.state.inst.value][i].nome)
         
         for(let i in this.props.sessions)
-            if(this.props.sessions[i].state.inst == this.state.inst.value)
+            if(this.props.sessions[i].state.inst === this.state.inst.value)
                 conflitos.sessoes.push(this.props.sessions[i].label)
          
         for(let i in this.props.aproveitamentosData)
-            if(this.props.aproveitamentosData[i].inst == this.state.inst.value)
+            if(this.props.aproveitamentosData[i].inst === this.state.inst.value)
                 conflitos.aproveitamentos.push(this.props.aproveitamentosData[i].label)
 
-		return (conflitos.blocos.length == 0 && conflitos.disciplinas.length == 0 && conflitos.sessoes.length == 0 && conflitos.configuracoes.length == 0 && conflitos.aproveitamentos.length == 0)?false:conflitos;
+		return (conflitos.blocos.length === 0 && conflitos.disciplinas.length === 0 && conflitos.sessoes.length === 0 && conflitos.configuracoes.length === 0 && conflitos.aproveitamentos.length === 0)?false:conflitos;
 	}
 
 	checkIsDeleteOk = () => {
@@ -124,7 +123,7 @@ class EditorInst extends Component {
                 prevId: this.state.code
             });
 
-            if(this.props.configuracoes.instituicaoSelect && this.props.configuracoes.instituicaoSelect.value == this.state.code){
+            if(this.props.configuracoes.instituicaoSelect && this.props.configuracoes.instituicaoSelect.value === this.state.code){
                 let newConfigs = JSON.parse(JSON.stringify(this.props.configuracoes));
 
                 newConfigs.instituicaoData = this.state.newName;
@@ -146,7 +145,7 @@ class EditorInst extends Component {
             let newDiscSel = {...this.props.disciplinasSelect}
 
             // Impede que faça operações de disco desnecerrárias caso não hajam disciplinas na instituição
-            if(newDiscObj[this.state.code] && this.state.code != this.state.newCode){
+            if(newDiscObj[this.state.code] && this.state.code !== this.state.newCode){
 
                 newDiscObj[this.state.newCode] = {...newDiscObj[this.state.code]}
                 delete newDiscObj[this.state.code];
@@ -168,7 +167,7 @@ class EditorInst extends Component {
 
                 let newSessions = {...this.props.sessions}
                 for(let i in newSessions){
-                    if(newSessions[i].state.inst == this.state.code){
+                    if(newSessions[i].state.inst === this.state.code){
                         newSessions[i].state.inst = this.state.newCode;
                         newSessions[i].label = `${newSessions[i].state.aluno?newSessions[i].state.aluno:'Aluno não definido'} - ${this.state.newCode} - ${dateUtils.getRawStringWithHours(newSessions[i].id)}`;
                     }
@@ -183,7 +182,7 @@ class EditorInst extends Component {
             let newBlocObj = {...this.props.blocosSelect}
             let newBlocData = {...this.props.blocosData}
             // Impede que faça operações de disco desnecerrárias caso não hajam blocos da instituição
-            if(newBlocObj[this.state.code] && this.state.code != this.state.newCode){
+            if(newBlocObj[this.state.code] && this.state.code !== this.state.newCode){
 
                 newBlocObj[this.state.newCode] = [...newBlocObj[this.state.code]]
                 newBlocData[this.state.newCode] = {...newBlocData[this.state.code]}
@@ -207,16 +206,16 @@ class EditorInst extends Component {
 
             
 
-            if(this.state.code != this.state.newCode){
+            if(this.state.code !== this.state.newCode){
                 let newAprData = JSON.parse(JSON.stringify(this.props.aproveitamentosData));
 
                 for(let i in newAprData){
-                    if(newAprData[i].inst == this.state.code){
+                    if(newAprData[i].inst === this.state.code){
                         newAprData[i].inst = this.state.newCode;
                         newAprData[i].label = `${newAprData[i].aluno}: ${this.props.alunosData[newAprData[i].aluno].nome} (${this.state.newCode}) em ${dateUtils.getStringWithHours(newAprData[i].initialDate)}`;
                     }
                     
-                    if(newAprData[i].instDestino == this.state.code)
+                    if(newAprData[i].instDestino === this.state.code)
                         newAprData[i].instDestino = this.state.newCode
 
                 }
