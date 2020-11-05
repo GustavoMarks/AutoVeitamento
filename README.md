@@ -11,29 +11,26 @@ Nesse sentido, o AutoVeitamento surgiu com a possibilidade de fácil e convenien
 Veja um vídeo com exemplo de uso do programa [clicando aqui](https://drive.google.com/file/d/1Nk1drlag82oeQzU69rh4vWxvFg4D8Gth/view?usp=sharing).
 
 ## Tecnologias utilizadas:
-- [Node js](https://nodejs.org/en/)
-- [React js](https://pt-br.reactjs.org/)
-- [Electron js](https://www.electronjs.org/)
+- [Node JS](https://nodejs.org/en/): motor javascript para máquina
+- [React JS](https://pt-br.reactjs.org/): biblioteca para desenvolvimento web
+- [Electron JS](https://www.electronjs.org/): framework para conversão web para desktop
 
 ## Instruções de Instalação para ambiente de desenvolviento:
-
 Antes da instalação, vale lembrar que este programa possui alguns pré-requisitos para ser executado, sendo eles:
 * NodeJs, na sua versão estável mais recente: www.nodejs.org/en/
 * NPM, na sua versão estável mais recente (Obtido ao instalar o NodeJs)
+* (opcional) Yarn, na sua versão mais estável: https://classic.yarnpkg.com/en/docs/install/
 * LaTex, na versão de instalação que desejar (ex: MikTex https://miktex.org/)
+
+### Observações importantes
+É preferível a utilização do CLI yarn como gereciador de pacotes no lugar do npm devido ao seu melhor desempenho, porém ambas podem ser utilizadas nas instruções abaixo. Para evitar conflitos e redundância no projeto, os arquivos de configuração de pacotes gerados pelo npm (package-lock.json) serão ignorados no versionamento, apenas arquivos gerados pelo yarn (yarn.lock) serão mantidos.
 
 Então, após os requisitos serem instalados, basta seguir os passos adiantes:
 
 1. Primeiramente, clone este repositório em qualquer lugar na sua máquina
 2. Vá até a pasta onde esse repositório foi clonado e abra o terminal
-3. Digite o comando *yarn install* e aguarde a instalação de todos os pacotes, isso pode levar algum tempo
-4. Digite o comando *yarn electron-dev* e aguarde a inicialização do programa
+3. Digite o comando `yarn install` (ou npm install) e aguarde a instalação de todos os pacotes, isso pode levar algum tempo
+4. Digite o comando `yarn electron-dev` (ou npm run electro-dev) e aguarde a inicialização do programa
 
-## Refatorações
-
-Foi escolhido apenas o uso do _yarn_ como arquivo de configuração, pois manter os dois pacotes (yarn.lock e package-json.lock) 
-pode gerar conflitos e redundância. Logo, os comando com _npm_ são opcionais (_npm i_ e _npm run electron-dev_). 
-
-#### Por que usar o yarn?
-
-O yarn.lock é criado com o CLI do _yarn_, o qual possui desempenho melhor.
+## Instruções para ambiente de testes unitários automatizados
+Os testes no projeto são realizados pelo framework **React JS** que possui scripts de testes embutidos na sua configuração (tentar adicionar outro framework de testes irá ocasionar conflitos). Os scripts de testes do framework utilizam a biblioteca [Jest](https://jestjs.io/). Novos scripts poderão ser adicionados à pasta "src/\_\_tests__" seguindo a sintaxe documentada no Jest. Para rodar uma bateria de testes basta utilizar o comando `yarn test` (ou npm test) e seguir as instruções no terminal.
