@@ -34,3 +34,8 @@ Então, após os requisitos serem instalados, basta seguir os passos adiantes:
 
 ## Instruções para ambiente de testes unitários automatizados
 Os testes no projeto são realizados pelo framework **React JS** que possui scripts de testes embutidos na sua configuração (tentar adicionar outro framework de testes irá ocasionar conflitos). Os scripts de testes do framework utilizam a biblioteca [Jest](https://jestjs.io/). Novos scripts poderão ser adicionados à pasta "src/\_\_tests__" seguindo a sintaxe documentada no Jest. Para rodar uma bateria de testes basta utilizar o comando `yarn test` (ou npm test) e seguir as instruções no terminal.
+
+## Arquiterura do projeto
+Este projeto utiliza a arquiterura moderna [Flux](https://facebook.github.io/flux/) criada pelo Facebook voltada para desenvolvimento de aplicações "client-side". A arquivetura se baseia em um _store_ que guarda dados da aplicação visíveis para a _view_, sendo seu estado do store gerenciado por _dispatchers_ e que por sua vez são acionados por _actions_ que podem partir da _view_ ou por gatilhos da própria aplicação.
+
+Para a implementação desta arquiteura, o projeto utiliza as bibliotecas [Redux](https://redux.js.org/), que implementa containers da arquiteura, e a biblioteca [React-Redux](https://www.npmjs.com/package/react-redux) que adapta a implementação Flux para o React JS.
