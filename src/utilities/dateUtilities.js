@@ -17,7 +17,7 @@ const dateUtils = {
 	transformString: function(dateStr){
 		const dateArr = dateStr.split('-');
 		try{
-			return `${dateArr[0]}/${dateArr[1]}/${dateArr[2]}` 
+			return `${dateArr[0]<10?'0'+dateArr[0]:dateArr[0]}/${dateArr[1]<10?'0'+dateArr[1]:dateArr[1]}`;
 		}
 		catch(e){
 			return "Não foi possível mostrar a data."

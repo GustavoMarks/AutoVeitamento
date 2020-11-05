@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./App.css";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as BrowserRouter, Route, Link } from "react-router-dom";
 import Router from "./components/Router/Router";
 import NavBar from "./components/NavBar/NavBar";
 import Listener from "./containers/Listener/Listener";
