@@ -26,9 +26,14 @@ Então, após os requisitos serem instalados, basta seguir os passos adiantes:
 
 1. Primeiramente, clone este repositório em qualquer lugar na sua máquina
 2. Vá até a pasta onde esse repositório foi clonado e abra o terminal
-3. Digite o comando *npm i* e aguarde a instalação de todos os pacotes, isso pode levar algum tempo
-4. Digite o comando *npm run electron-dev* e aguarde a inicialização do programa
+3. Digite o comando *yarn install* e aguarde a instalação de todos os pacotes, isso pode levar algum tempo
+4. Digite o comando *yarn electron-dev* e aguarde a inicialização do programa
 
 ## Refatorações
 
-Foi escolhido apenas o uso de um arquivo de configuração, no caso o yarn(yarn.lock), para evitar conflitos e redundância. O arquivo package-lock.json foi adicionado ao .gitignore.
+Foi escolhido apenas o uso do _yarn_ como arquivo de configuração, pois manter os dois pacotes (yarn.lock e package-json.lock) 
+pode gerar conflitos e redundância. Logo, os comando com _npm_ são opcionais (_npm i_ e _npm run electron-dev_). 
+
+#### Por que usar o yarn?
+
+O yarn.lock é criado com o CLI do _yarn_, o qual possui desempenho melhor.
