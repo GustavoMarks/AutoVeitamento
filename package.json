@@ -1,15 +1,13 @@
 {
-  "name": "aproveitamento",
-  "version": "0.1.0",
+  "name": "autoveitamento",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.5.1",
     "@material-ui/icons": "^4.5.1",
     "acorn": "^6.4.1",
     "caniuse-lite": "^1.0.30001154",
-    "concurrently": "^4.1.0",
-    "electron": "^4.1.4",
-    "electron-builder": "^20.39.0",
+    "dotenv": "^8.2.0",
     "electron-is-dev": "^1.1.0",
     "handlebars": "^4.3.0",
     "jspdf": "^1.5.3",
@@ -26,17 +24,27 @@
     "react-scripts": "2.1.8",
     "react-select": "^2.4.3",
     "redux": "^4.0.1",
-    "serialize-javascript": "^2.1.1",
+    "serialize-javascript": "^2.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "electron": "^4.1.4",
+
+    "electron-builder": "^20.39.0",
     "wait-on": "^3.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "electron .",
+    "start:dev": "concurrently \"react-scripts start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build:react": "react-scripts build",
+    "build:electron": "electron-builder --dir",
+    "prebuild": "react-scripts build",
+    "build": "electron-builder",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"npm run start\" \"wait-on http://localhost:3000 && electron .\""
+    "eject:react": "react-scripts eject"
   },
   "main": "public/electron.js",
+  "homepage": "./",
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -5,12 +5,15 @@ const os = require('os');
 const path = require('path');
 const url = require('url');
 const isDev = require('electron-is-dev');
+require('dotenv').config();
 
 let mainWindow;
 
+const solvURL = process.env.NODE_ENV == 'production' || !isDev ? `file://${path.join(__dirname, '../build/index.html')}` : 'http://localhost:3000';
+
 function createWindow() {
   mainWindow = new BrowserWindow({width: 600, height: 500, minHeight: 100, minWidth: 100, title: "Carregando...", icon: path.join(__dirname,"icons/icone.png")});
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+  mainWindow.loadURL(solvURL);
   mainWindow.on('closed', () => mainWindow = null);
   mainWindow.maximize();
 }
